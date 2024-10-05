@@ -1,1 +1,3 @@
-// place files you want to import through the `$lib` alias in this folder.
+// Buttons
+export { default as Button } from './components/buttons/Button.svelte';
+export { default as TextButton } from './components/buttons/TextButton.svelte';
