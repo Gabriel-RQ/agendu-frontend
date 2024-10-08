@@ -6,13 +6,15 @@
     export let secondary = false;
     /** @type {boolean}*/
     export let expanded = false;
+    /** @type {'submit' | 'reset' | 'button'} */
+    export let type = 'button';
     export {className as class};
 
     /** @type {string} */
     let buttonClass = `${className} ${secondary && 'secondary'} ${expanded && 'expanded'}`;
 </script>
 
-<button class={buttonClass} on:click on:keydown on:keyup>
+<button class={buttonClass} {type} on:click on:keydown on:keyup>
     <slot />
 </button>
 
