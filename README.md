@@ -28,7 +28,6 @@ Repositório para o frontend do sistema agendu.
 
 Instalar o [git](https://git-scm.com/downloads).<br>
 Instalar o [node](https://nodejs.org/en/download/prebuilt-installer/current).<br>
-(Opcional) Instalar o [pnpm](https://pnpm.io/pt/) (caso usar, substituir eventuais comandos `npm` por `pnpm`).
 
 1. **Clonar o repositório localmente.**
 
