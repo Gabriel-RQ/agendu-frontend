@@ -1,4 +1,4 @@
-<script>
+    <script>
     /** @type {string} */
     let className = '';
     /** @type {string} */
