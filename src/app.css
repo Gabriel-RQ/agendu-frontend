@@ -11,13 +11,18 @@ a {
 
 :root {
 	--primary-color: #578c52;
-	--text-color: #fff;
+	--text-white: #fff;
+	--text-black: #3a3a3a;
+	--bg-color: #f7fafc;
 
+	background: var(--bg-color);
 	font-family: 'Inter', sans-serif;
 	font-optical-sizing: auto;
 	font-style: normal;
-	font-size: 16px;
+	font-size: 12px;
 }
+
+/* Fonte */
 
 .text-half {
 	font-size: 0.5rem;
@@ -53,4 +58,55 @@ a {
 
 .font-bold {
 	font-weight: 600;
+}
+
+.title {
+	color: var(--primary-color);
+	font-size: 2.5rem;
+	font-weight: 600;
+}
+
+.text-green {
+	color: var(--primary-color);
+}
+
+.text-white {
+	color: var(--text-white);
+}
+
+/* Tamanho */
+
+.full-height {
+	height: 100%;
+}
+
+.half-height {
+	height: 50%;
+}
+
+.full-width {
+	width: 100%;
+}
+
+.half-width {
+	width: 50%;
+}
+
+.container {
+	padding: 2rem;
+}
+
+/* Display */
+
+.flex-row-center {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+}
+
+.flex-column-center {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
