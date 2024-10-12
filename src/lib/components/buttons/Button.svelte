@@ -39,7 +39,18 @@
         line-height: normal;
         padding: .75rem 0;
         text-align: center;
+        transition: all 250ms ease-in-out;      
     }
+
+    :is(button, a):not(.secondary):not(.disabled):hover {
+        background: var(--primary-color-dark);
+    }
+
+    :is(button, a):not(.disabled).secondary:hover {
+        outline-color: var(--primary-color-dark);
+        color: var(--primary-color-dark);
+    }
+
 
     .secondary {
         background: var(--text-white);

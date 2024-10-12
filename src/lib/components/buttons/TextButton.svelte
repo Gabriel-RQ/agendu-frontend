@@ -27,7 +27,12 @@
         border-radius: 0;
         color: var(--primary-color);
         cursor: pointer;
+        transition: all 250ms ease-in-out;    
         width: fit-content;
+    }
+
+    :is(button, a):not(.disabled):hover {
+        color: var(--primary-color-dark);
     }
 
     .disabled {
