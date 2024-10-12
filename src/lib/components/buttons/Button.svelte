@@ -35,6 +35,7 @@
         color: var(--text-white);
         cursor: pointer;
         display: inline-block;
+        font-family: inherit;
         line-height: normal;
         padding: .75rem 0;
         text-align: center;
