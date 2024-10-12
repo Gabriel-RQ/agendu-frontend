@@ -1,12 +1,14 @@
     <script>
     /** @type {string} */
     let className = '';
+    export { className as class };
     /** @type {string} */
     export let href = '';
-    export { className as class };
+    /** @type {boolean} */
+    export let disabled = false;
 
     /** @type {string} */
-    let buttonClass = `${className}`;
+    let buttonClass = `${className} ${disabled ? 'disabled' : ''}`;
 </script>
 
 {#if href}
@@ -26,5 +28,9 @@
         color: var(--primary-color);
         cursor: pointer;
         width: fit-content;
+    }
+
+    .disabled {
+        color: var(--primary-color-dark);
     }
 </style>
