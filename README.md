@@ -59,7 +59,7 @@ git checkout dev
 ```bash
 git add ['.' para incluir todos os arquivos modificados ou nome dos arquivos]
 
-git commit -m ["Mensagem de commit."] [arquivos a serem inclusos no commit ou '.' para incluir todos os arquivos]
+git commit -m "Mensagem de commit."
 ```
 
 7. **Voltar a ramificação principal e obter as alterações mais recentes do repositório remoto (GitHub).**
