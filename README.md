@@ -45,16 +45,22 @@ git clone https://github.com/Gabriel-RQ/agendu-frontend
 npm install
 ```
 
-4. **Criar uma nova branch de desenvolvimento, e utilizar ela.**
+4. (OPCIONAL) **Obter as alterações mais recentes do repositório remoto (GitHub). Rodar caso já tenha clonado o repositório anteriormente.**
+
+```bash
+git pull origin main
+```
+
+5. **Criar uma nova branch de desenvolvimento, e utilizar ela.**
 
 ```bash
 git branch dev
 git checkout dev
 ```
 
-5. **Fazer alterações desejadas no código.**
+6. **Fazer alterações desejadas no código.**
 
-6. **Adicionar alterações ao controle de versão e Realizar os commits das alterações feitas. Dica: Fazer um commit para operações atômicas (por exemplo um novo componente ou página), ao invés de adicionar todas as alterações em um commit só.**
+7. **Adicionar alterações ao controle de versão e Realizar os commits das alterações feitas. Dica: Fazer um commit para operações atômicas (por exemplo um novo componente ou página), ao invés de adicionar todas as alterações em um commit só.**
 
 ```bash
 git add ['.' para incluir todos os arquivos modificados ou nome dos arquivos]
@@ -62,20 +68,19 @@ git add ['.' para incluir todos os arquivos modificados ou nome dos arquivos]
 git commit -m "Mensagem de commit."
 ```
 
-7. **Voltar a ramificação principal e obter as alterações mais recentes do repositório remoto (GitHub).**
+8. **Voltar a ramificação principal.**
 
 ```bash
 git checkout main
-git pull origin main
 ```
 
-8. **Fazer um merge das alterações em desenvolvimento com a ramificação principal.**
+9. **Fazer um merge das alterações em desenvolvimento com a ramificação principal.**
 
 ```bash
 git merge dev
 ```
 
-9. **Enviar alterações para o repositório remoto.**
+10. **Enviar alterações para o repositório remoto.**
 
 ```bash
 git push origin main
