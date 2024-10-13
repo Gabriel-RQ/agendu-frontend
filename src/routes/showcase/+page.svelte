@@ -6,12 +6,13 @@
 
 <main>
     <div>
-        <Fa icon={faHouse} scale=2 size="lg" color="red" />
+        <Button class="text-1_75 font-medium" expanded href="/">Início</Button>
         <Button class="text-1_75 font-medium" expanded>Botão primário</Button>
-        <Button class="text-1_75 font-medium" secondary expanded>Botão secundário</Button>
-        <TextButton class="text-1_75 font-medium" href="/teste">Botão de texto</TextButton>
+        <Fa icon={faHouse} scale=2 size="lg" color="var(--primary-color)" />
+        <Button class="text-1_75 font-medium" disabled secondary expanded>Botão secundário</Button>
+        <TextButton class="text-1_75 font-medium" href="/">Botão de texto (login)</TextButton>
         <Input expanded  value="teste">
-            <Fa slot="icon" icon={faEnvelope} scale=1.5 size="lg" />
+            <Fa slot="icon" icon={faEnvelope} scale=1.5 size="lg" />    
         </Input>
     </div>
 </main>

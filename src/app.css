@@ -23,6 +23,11 @@ a {
 	font-size: 16px;
 }
 
+body {
+	height: 100vh;
+	width: 100vw;
+}
+
 /* Fonte */
 
 .text-half {
@@ -31,6 +36,10 @@ a {
 
 .text-single {
 	font-size: 1rem;
+}
+
+.text-1_25 {
+	font-size: 1.25rem;
 }
 
 .text-1_5 {
