@@ -1,11 +1,12 @@
 <script>
     import { Button } from "$lib";
     import logo_agendu from "$lib/images/logo_agendu.png";
+	import { scale } from "svelte/transition";
 	import SocialMediaIcons from "./SocialMediaIcons.svelte";
 </script>
 
 
-<section class="container full-height">
+<section in:scale={{ duration: 300}} class="login-section-container container full-height">
 
     <div id="titulo">
         <img src={logo_agendu} alt="Logo do Agendu, representada por duas mãos segurando um calendário.">
@@ -18,10 +19,9 @@
         <span class="full-width wrapper"><p class="font-medium text-1_25 text-black">ou</p></span>
 
         <Button secondary expanded class="font-medium text-1_5">Pais e responsáveis</Button>
-
-        <SocialMediaIcons hideOnDesktop />
     </div>      
-
+    
+    <SocialMediaIcons hideOnDesktop />
 </section>
 
 
@@ -29,7 +29,7 @@
     section {
         text-align: center;     
         display: grid;
-        grid-template-rows: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr) 10%;
     }   
 
     img {
@@ -38,7 +38,7 @@
         margin: 0 auto;
     }
 
-    div{ 
+    div { 
         display: flex;
         flex-direction: column;
         gap: 2rem;
@@ -69,13 +69,6 @@
     
 
     @media screen and (min-width: 992px) {
-
-        .container {
-            font-size: 18px;
-            padding-left: 5rem;
-            padding-right: 5rem;
-        }
-
         #titulo {
             place-self: center;
         }
