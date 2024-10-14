@@ -8,6 +8,10 @@
     export let value = null;
     /** @type {string?} */
     export let placeholder = null;
+    /** @type {string?} */
+    export let name = null;
+    /** @type {string?} */
+    export let id = null;
     /** @type {boolean} */
     export let disabled = false;
     /** @type {boolean} */
@@ -18,7 +22,7 @@
 
 
 <span class="wrapper {expanded && 'expanded'}">
-    <input class={buttonClass} {type} {placeholder} {value} {disabled} on:blur on:input on:change on:click on:keypress on:keyup>
+    <input class={buttonClass} {id} {name} {type} {placeholder} {value} {disabled} on:blur on:input on:change on:click on:keypress on:keyup>
     {#if $$slots.icon}
         <span class="icon">
             <slot name="icon" />

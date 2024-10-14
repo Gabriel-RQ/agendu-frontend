@@ -3,6 +3,8 @@
     let className = '';
     export { className as class };
     /** @type {string} */
+    export let id = '';
+    /** @type {string} */
     export let href = '';
     /** @type {boolean} */
     export let disabled = false;
@@ -12,11 +14,11 @@
 </script>
 
 {#if href}
-    <a class={buttonClass} {href} on:click on:keydown on:keyup>
+    <a class={buttonClass} {href} {id} on:click on:keydown on:keyup>
         <slot />
     </a>
 {:else}
-    <button class={buttonClass} on:click on:keydown on:keyup>
+    <button class={buttonClass} {id} on:click on:keydown on:keyup>
         <slot />
     </button>
 {/if}
@@ -28,7 +30,7 @@
         color: var(--primary-color);
         cursor: pointer;
         transition: all 250ms ease-in-out;    
-        width: fit-content;
+        /* width: fit-content; */
     }
 
     :is(button, a):not(.disabled):hover {
