@@ -29,6 +29,10 @@ body {
 	width: 100vw;
 }
 
+button {
+	cursor: pointer;
+}
+
 /* Fonte */
 
 .text-half {
@@ -37,6 +41,10 @@ body {
 
 .text-single {
 	font-size: 1em;
+}
+
+.text-1_15 {
+	font-size: 1.15em;
 }
 
 .text-1_25 {
@@ -126,6 +134,27 @@ body {
 	justify-content: center;
 }
 
+.flex-column {
+	display: flex;
+	flex-direction: column;
+}
+
 .hidden {
 	display: none;
+}
+
+/* Tela de login */
+
+.login-section-container {
+	text-align: center;
+	display: grid;
+	grid-template-rows: 25% 1fr 15%;
+}
+
+@media screen and (min-width: 992px) {
+	.login-section-container {
+		font-size: 18px;
+		padding-left: 5rem;
+		padding-right: 5rem;
+	}
 }
