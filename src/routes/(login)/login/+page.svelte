@@ -27,7 +27,7 @@
             <label for="password">Senha</label>
             
             <Input id="password" name="password" type={showPassword ? "text" : "password"} expanded>
-                <button slot="icon" on:click={() => showPassword = !showPassword}>
+                <button slot="icon" on:click|preventDefault={() => showPassword = !showPassword}>
                     <Fa icon={showPassword ? faEyeSlash : faEye}  color="var(--primary-color)" />
                 </button>
             </Input>
