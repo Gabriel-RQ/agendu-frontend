@@ -1,92 +1,81 @@
 <script>
-	let isOpen = false; // Estado do menu (aberto ou fechado)
+	let userName = 'Nome do Usuário';
+	let currentPage = 'Nome da página atual';
 
-	const toggleMenu = () => {
-		isOpen = !isOpen; // Alterna o estado do menu
-	};
+	function openMenu() {
+		// lógica para abrir o menu lateral.
+		console.log('Menu aberto');
+	}
+
+	function openProfileOptions() {
+		// lógica para abrir as opções de perfil.
+		console.log('Opções de perfil abertas');
+	}
 </script>
 
-<header class="header">
-	<h1>Us Cria de Seberi</h1>
-	<button class="menu-toggle" on:click={toggleMenu} aria-label="Toggle menu"> ☰ </button>
-	<nav class={isOpen ? 'open' : 'closed'}>
-		<ul>
-			<li><a href="/">Home</a></li>
-			<li><a href="/about">Sobre</a></li>
-			<li><a href="/contact">Contato</a></li>
-		</ul>
-	</nav>
+<header>
+	<!-- Botão de menu -->
+	<button class="menu-button" on:click={openMenu}> ☰ </button>
+
+	<!-- Logo e nome da página -->
+	<div class="logo">
+		<img src="src\lib\images\logo_agendu.png" alt="Logo do Agendu" />
+		<div class="user-info">
+			<p>{userName}</p>
+			<small>{currentPage}</small>
+		</div>
+	</div>
+
+	<!-- Botão de perfil -->
+	<button class="profile-button" on:click={openProfileOptions}>
+		<img src="src\lib\images\foto_perfil_dummy.png" alt="Foto de perfil" />
+	</button>
 </header>
 
 <style>
-	.header {
+	header {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding: 10px 20px;
+		padding: 10px;
 		background-color: #6fb267;
+		color: white;
+		font-family: Arial, sans-serif;
 	}
 
-	h1 {
-		margin: 0;
-		font-size: 1.5rem;
-	}
-
-	.menu-toggle {
+	.menu-button {
 		background: none;
 		border: none;
-		font-size: 1.5rem;
+		color: white;
+		font-size: 24px;
 		cursor: pointer;
 	}
 
-	nav {
-		display: none;
+	.logo {
+		display: flex;
+		align-items: center;
 	}
 
-	/* Menu aberto */
-	nav.open {
-		display: block;
+	.logo img {
+		width: 30px;
+		margin-right: 10px;
 	}
 
-	/* Estilização do menu para dispositivos móveis */
-	@media (max-width: 768px) {
-		nav ul {
-			list-style: none;
-			padding: 0;
-			margin: 0;
-			background-color: #fff;
-			position: absolute;
-			top: 50px;
-			right: 20px;
-			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-			width: 200px;
-		}
-
-		nav ul li {
-			border-bottom: 1px solid #ccc;
-		}
-
-		nav ul li a {
-			display: block;
-			padding: 10px 15px;
-			color: #333;
-			text-decoration: none;
-		}
-
-		nav ul li a:hover {
-			background-color: #f0f0f0;
-		}
+	.user-info {
+		flex-grow: 1;
+		text-align: left;
 	}
 
-	/* Estilização do menu para telas maiores */
-	@media (min-width: 769px) {
-		nav {
-			display: flex;
-		}
+	.profile-button {
+		background: none;
+		border: none;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+	}
 
-		nav ul {
-			display: flex;
-			gap: 20px;
-		}
+	.profile-button img {
+		width: 30px;
+		border-radius: 50%;
 	}
 </style>
