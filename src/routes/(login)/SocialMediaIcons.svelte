@@ -6,9 +6,9 @@
 <!-- TODO: Colocar links corretos -->
 
 <span class="icon-wrapper {hideOnDesktop ? 'hidden' : ''}">
-    <a class="icon icon-facebook" href=""></a>
-    <a class="icon icon-instagram" href=""></a>
-    <a class="icon icon-email" href=""></a>
+    <a class="icon icon-facebook" target="_blank" href="https://www.facebook.com/APAEFrederico"></a>
+    <a class="icon icon-instagram" target="_blank" href="https://www.instagram.com/apae_frederico/"></a>
+    <a class="icon icon-email" href="mailto:apae_fw@yahoo.com.br"></a>
 </span>   
 
 <style>
