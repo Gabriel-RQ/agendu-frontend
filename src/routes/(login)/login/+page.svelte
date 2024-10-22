@@ -19,7 +19,7 @@
         <div class="input-wrapper flex-column full-width">
             <label for="email">Endereço de e-mail</label>
             <Input id="email" name="email" type="email" expanded>
-                <Fa icon={faEnvelope} slot="icon" color="var(--primary-color)" />
+                <Fa icon={faEnvelope} slot="icon" color="var(--icon-color)" />
             </Input>
         </div>
 
@@ -28,7 +28,7 @@
             
             <Input id="password" name="password" type={showPassword ? "text" : "password"} expanded>
                 <button slot="icon" on:click|preventDefault={() => showPassword = !showPassword}>
-                    <Fa icon={showPassword ? faEyeSlash : faEye}  color="var(--primary-color)" />
+                    <Fa icon={showPassword ? faEyeSlash : faEye}  color="var(--icon-color)" />
                 </button>
             </Input>
 
@@ -39,7 +39,7 @@
 
     </form>
 
-    <TextButton id="back-button" class="flex-row-center full-width" href="/">
+    <TextButton highlight id="back-button" class="flex-row-center full-width" href="/">
         <Fa icon={faArrowLeft} size="lg" />
         <p class="font-medium text-1_25">Voltar</p>
     </TextButton>
