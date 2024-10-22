@@ -32,6 +32,7 @@
 
 <style>
     .wrapper {
+        --icon-color: var(--primary-color-dark);
         --color: 94, 94, 94;
         position: relative;
         color: var(--color);
@@ -47,8 +48,9 @@
     }
 
     .wrapper:focus-within {
+        --icon-color: var(--primary-color);
         color: var(--primary-color);
-    }
+    }       
 
     input:focus {
         border-color: var(--primary-color);
