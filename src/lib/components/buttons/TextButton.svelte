@@ -8,9 +8,11 @@
     export let href = '';
     /** @type {boolean} */
     export let disabled = false;
+    /** @type {boolean} */
+    export let highlight = false;
 
     /** @type {string} */
-    let buttonClass = `${className} ${disabled ? 'disabled' : ''}`;
+    let buttonClass = `${className} ${disabled ? 'disabled' : ''} ${highlight ? 'highlight' : ''}`;
 </script>
 
 {#if href}
@@ -29,6 +31,8 @@
         border-radius: 0;
         color: var(--primary-color);
         cursor: pointer;
+        height: max-content;
+        padding: .75rem 0;
         transition: all 250ms ease-in-out;    
         /* width: fit-content; */
     }
@@ -39,5 +43,11 @@
 
     .disabled {
         color: var(--primary-color-dark);
+    }
+
+    .highlight:hover {
+        transition: background 250ms ease-in-out, color 200ms ease-in;
+        background: rgba(0, 0, 0, .07);
+        border-radius: 10px;
     }
 </style>
