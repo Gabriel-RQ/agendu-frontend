@@ -47,10 +47,19 @@
         height: 62px;
     }
 
+    .wrapper:has(input:invalid):not(:focus-within) {
+        --icon-color: var(--text-red);
+    }
+
     .wrapper:focus-within {
         --icon-color: var(--primary-color);
         color: var(--primary-color);
     }       
+
+    input:invalid {
+        border-color: var(--text-red);
+        color: var(--text-red)
+    }
 
     input:focus {
         border-color: var(--primary-color);
@@ -71,8 +80,4 @@
     .wrapper:has(input:disabled) {
         color: rgb(var(--color));
     }   
-
-    input:disabled  {
-        color: rgb(var);
-    }
 </style>        
