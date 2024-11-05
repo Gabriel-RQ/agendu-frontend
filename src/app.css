@@ -15,8 +15,7 @@ a {
 	--text-white: #fff;
 	--text-black: #3a3a3a;
 	--bg-color: #f7fafc;
-
-	background: var(--bg-color);
+	--text-red: #c44745;
 	color: var(--text-white);
 	font-family: 'Inter', sans-serif;
 	font-optical-sizing: auto;
@@ -95,6 +94,10 @@ button {
 
 .text-black {
 	color: var(--text-black);
+}
+
+.text-red {
+	color: var(--text-red);
 }
 
 /* Tamanho */
