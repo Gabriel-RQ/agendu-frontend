@@ -3,12 +3,10 @@
     export let hideOnDesktop = false;
 </script>
 
-<!-- TODO: Colocar links corretos -->
-
 <span class="icon-wrapper {hideOnDesktop ? 'hidden' : ''}">
-    <a class="icon icon-facebook" target="_blank" href="https://www.facebook.com/APAEFrederico"></a>
-    <a class="icon icon-instagram" target="_blank" href="https://www.instagram.com/apae_frederico/"></a>
-    <a class="icon icon-email" href="mailto:apae_fw@yahoo.com.br"></a>
+    <a class="icon icon-facebook" target="_blank" href="https://www.facebook.com/APAEFrederico"><p>Face</p></a>
+    <a class="icon icon-instagram" target="_blank" href="https://www.instagram.com/apae_frederico/"><p>Insta</p></a>
+    <a class="icon icon-email" href="mailto:apae_fw@yahoo.com.br"><p>E-mail</p></a>
 </span>   
 
 <style>
@@ -23,6 +21,9 @@
         background-color: var(--primary-color);
         border-radius: 50%;
         height: 54px;       
+    }
+    .icon p {
+        visibility: hidden;
     }
 
     .icon-facebook {
