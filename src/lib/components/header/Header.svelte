@@ -2,18 +2,20 @@
 	import { page } from '$app/stores';
 
 	let userName = 'Nome do Usuário';
-	let currentPage = $page.route.id ?? '';
+	let currentPage = $page.route.id?.split('/').pop() ?? '';
 	let isMenuOpen = false;
 
 	//Mapeamento das rotas para os nomes da páginas - adicionar mais conforme  necessário
 
 	/** @type { {[key: string] : string} }*/
 	const pageNames = {
-		'/home': 'Página Inicial',
-		'/page1': 'Página 1',
-		'/page2': 'Página 2',
-		'/page3': 'Página 3'
+		home: 'Página Inicial',
+		page1: 'Página 1',
+		page2: 'Página 2',
+		page3: 'Página 3'
 	};
+
+	$: console.log('Página atual:', currentPage);
 
 	function openMenu() {
 		isMenuOpen = !isMenuOpen;
