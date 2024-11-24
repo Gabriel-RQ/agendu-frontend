@@ -10,12 +10,11 @@
 	/** @type { {[key: string] : string} }*/
 	const pageNames = {
 		home: 'Página Inicial',
+		roles: 'Funções',
 		page1: 'Página 1',
 		page2: 'Página 2',
 		page3: 'Página 3'
 	};
-
-	$: console.log('Página atual:', currentPage);
 
 	function openMenu() {
 		isMenuOpen = !isMenuOpen;
