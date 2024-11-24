@@ -1,5 +1,5 @@
 <script>
-	import Header from '$lib/components/header/Header.svelte';
+	import { Header } from '$lib';
 	import { Fa } from 'svelte-fa';
 	import {
 		faCalendarAlt,
