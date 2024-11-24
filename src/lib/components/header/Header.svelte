@@ -2,21 +2,18 @@
 	import { page } from '$app/stores';
 
 	let userName = 'Nome do Usuário';
-	let currentPage = 'Nome da página atual';
+	let currentPage = $page.route.id ?? "";
 	let isMenuOpen = false;
 
 	//Mapeamento das rotas para os nomes da páginas - adicionar mais conforme  necessário
+
+	/** @type { {[key: string] : string} }*/
 	const pageNames = {
-		'/home#': 'Página Inicial',
+		'/home': 'Página Inicial',
 		'/page1': 'Página 1',
 		'/page2': 'Página 2',
 		'/page3': 'Página 3'
 	};
-
-	//Atualiza o nome da página atual
-	page.subscribe((value) => {
-		currentPage = pageNames[value];
-	});
 
 	function openMenu() {
 		isMenuOpen = !isMenuOpen;
@@ -35,7 +32,7 @@
 		<img src="src/lib/images/logo_agendu.png" alt="Logo do Agendu" />
 		<div class="user-info">
 			<p>{userName}</p>
-			<small>{currentPage}</small>
+			<small>{pageNames[currentPage]}</small>
 		</div>
 	</div>
 
