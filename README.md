@@ -16,6 +16,10 @@ Repositório para o frontend do sistema agendu.
 
 - [Introdução ao git 📒](https://www.freecodecamp.org/portuguese/news/uma-introducao-ao-git-o-que-e-e-como-usa-lo/)
 
+- [Biblioeca de ícones utilizada 🟢](https://cweili.github.io/svelte-fa/)
+
+- [Catálogo de ícones 🔤](https://fontawesome.com/search)
+
 ## Extensões (Ferramentas de desenvolvimento)
 
 - [VSCode](https://code.visualstudio.com/)
