@@ -8,6 +8,7 @@
 
 <main class="full-height">  
 
+    <!-- Imagem lateral (visualizada apenas em telas grandes) -->
     <section class="hidden">
 
         <div class="bg-image full-height" />
