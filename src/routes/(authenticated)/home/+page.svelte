@@ -26,6 +26,15 @@
 			<Card {icon} {title} />
 		{/each}
 	</div>
+
+	<!-- Rodapé -->
+	<footer class="text-green font-bold container flex-column-center">
+		<div>
+			<p>Bem-vindo ao <span class="">Agendu</span></p>
+			<small class="text-black text-half">APAE FW (V1.0 04/11/2024)</small>
+		</div>
+		<a href="#" class="text-green">Ajuda e suporte</a>
+	</footer>
 </section>
 
 <style>
@@ -37,5 +46,11 @@
 		gap: 10px;
 		margin-bottom: 20px;
 		padding: 0.75rem;
+	}
+
+	footer {
+		text-align: center;
+		font-size: 18px;
+		gap: 1rem;
 	}
 </style>
