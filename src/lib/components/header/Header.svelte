@@ -2,7 +2,7 @@
 	import { page } from '$app/stores';
 
 	let userName = 'Nome do Usuário';
-	let currentPage = $page.route.id ?? "";
+	let currentPage = $page.route.id ?? '';
 	let isMenuOpen = false;
 
 	//Mapeamento das rotas para os nomes da páginas - adicionar mais conforme  necessário
@@ -59,7 +59,7 @@
 		justify-content: space-between;
 		align-items: center;
 		padding: 10px;
-		background-color: #6fb267;
+		background-color: var(--primary-color-light);
 		color: white;
 		font-family: Arial, sans-serif;
 	}

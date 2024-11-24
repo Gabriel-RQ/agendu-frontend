@@ -11,6 +11,7 @@ a {
 
 :root {
 	--primary-color: #578c52;
+	--primary-color-light: #6db56f;
 	--primary-color-dark: #257c1b60;
 	--text-white: #fff;
 	--text-black: #3a3a3a;
