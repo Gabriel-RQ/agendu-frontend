@@ -11,6 +11,7 @@
 	const pageNames = {
 		home: 'Página Inicial',
 		roles: 'Funções',
+		turmas: 'Turmas',
 		page1: 'Página 1',
 		page2: 'Página 2',
 		page3: 'Página 3'
