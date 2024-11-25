@@ -25,7 +25,7 @@
 			</span>
 		</header>
 
-		<table>
+		<table class="full-width">
 			<thead>
 				<tr>
 					<th>N°</th>
@@ -53,9 +53,9 @@
 	}
 
 	header {
+		align-items: center;
 		display: flex;
 		justify-content: space-between;
-		align-items: center;
 		margin-bottom: 1rem;
 	}
 
@@ -69,7 +69,20 @@
 		text-align: left;
 	}
 
+	thead {
+		background: #eef3f7;
+		height: 2rem;
+	}
+
 	th {
-		width: 50%;
+		padding: 0.75rem 0.5rem;
+	}
+
+	td {
+		padding: 0.5rem;
+	}
+
+	tr:hover {
+		background-color: #f1f1f1;
 	}
 </style>
