@@ -1,14 +1,18 @@
 <script>
     import Header from "$lib/components/header/Header.svelte";
     import { IconButton } from "$lib";
-    import { faPlus, faSearch } from "@fortawesome/free-solid-svg-icons";
+    import { faPlus, faSearch, faU } from "@fortawesome/free-solid-svg-icons";
 	import { scale } from "svelte/transition";
 	import { cubicInOut, cubicOut } from "svelte/easing";
+    import {faUser} from "@fortawesome/free-solid-svg-icons";
+    import Fa from "svelte-fa";
 
 
     const users = [
-        { id: 1, name: "Regina", cargo: "Diretora" },
-        { id: 2, name: "Taísa", cargo: "Professora" }
+        { id: 1, foto:faUser, name: "Regina", cargo: "Diretora", turma: 1},
+        { id: 2, foto:faUser, name: "Taísa", cargo: "Professora", turma: 2},
+        { id: 3, foto:faUser, name: "Ana", cargo: "Professora", turma: 3}
+        
     ];
 
     let showSearch = false; // Estado para controlar a exibição da caixa de busca
@@ -50,9 +54,11 @@
         <table>
             <thead>
                 <tr>
-                    <th>N°</th>
-                    <th>Nome</th>
-                    <th>Cargo</th>
+                    <th>N.º</th>
+                    <th>FOTO</th>
+                    <th>NOME</th>
+                    <th>CARGO</th>
+                    <th>N.º TURMAS</th>
                 </tr>
             </thead>
 
@@ -60,8 +66,10 @@
                 {#each users as user}
                     <tr>
                         <td>{user.id}</td>
-                        <td>{user.name}</td>
+                        <td><Fa icon={user.foto}/></td>
+                        <td>{user.name}</td>                         
                         <td>{user.cargo}</td>
+                        <td>{user.turma}</td>
                     </tr>
                 {/each}
             </tbody>
@@ -71,6 +79,7 @@
 
 <style>
     .roles {
+        /* Epaçamento para versão mobile */
         /* box-shadow: #000 0px 0px 10px -5px; */
         border-radius: 1rem;
         padding: 0.75rem;
@@ -97,6 +106,12 @@
         width: 33.33%;
         text-align: left;
     }
+    th:last-child, td:last-child {
+    text-align: center;
+    white-space: nowrap;
+    width: 10%;
+    }
+
     
     .search-box {
         margin-bottom: 1rem;
@@ -111,5 +126,19 @@
         font-size: 1rem;
         width: 100%;
     }
-</style>
+    thead {
+        background-color: #eef3f3;
+        height: 2rem;
+    }
+    th{
+        padding: 0.75rem 0.5rem;
+    }
+    td {padding: 0.5rem;
+    }
+    tr:hover {
+        background-color: #f1f1f1;
+    }
+    @media (min-width: 992px) {
+    }
+    </style>
 
