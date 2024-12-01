@@ -2,7 +2,7 @@ import { fail, redirect } from '@sveltejs/kit';
 
 /** @satisfies {import('./$types').Actions} */
 export const actions = {
-	default: async ({ request, fetch }) => {
+	default: async ({ request, fetch, cookies }) => {
 		const data = await request.formData();
 		const email = data.get('email');
 		const password = data.get('password');
@@ -11,7 +11,7 @@ export const actions = {
 			return fail(400, { error: 'Preencha os dados de login' });
 		}
 
-		const response = await fetch('http://localhost:8080/login', {
+		const response = await fetch('http://localhost:8080/users/login', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -19,6 +19,19 @@ export const actions = {
 			body: JSON.stringify({ email: data.get('email'), password: data.get('password') })
 		});
 
-		redirect(303, '/home');
+		if (response.ok) {
+			const tokenResponse = await response.json();
+			const token = await tokenResponse.token;
+			cookies.set('Authorization', `Bearer ${token}`, {
+				httpOnly: true,
+				path: '/',
+				secure: true,
+				sameSite: 'strict',
+				maxAge: 60 * 60 * 24 // 24 hours
+			});
+			redirect(303, '/home');
+		}
+
+		return fail(401, { error: 'Usuário ou senha inválidos' });
 	}
 };
