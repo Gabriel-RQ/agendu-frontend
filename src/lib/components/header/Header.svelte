@@ -1,8 +1,9 @@
 <script>
 	import { page } from '$app/stores';
+	import logoAgendu from '../../images/logo_agendu.png';
 
 	let userName = 'Nome do Usuário';
-	let currentPage = $page.route.id?.split('/').pop() ?? '';
+	$: currentPage = $page.route.id?.split('/').pop() ?? '';
 	let isMenuOpen = false;
 
 	//Mapeamento das rotas para os nomes da páginas - adicionar mais conforme  necessário
@@ -11,15 +12,11 @@
 	const pageNames = {
 		home: 'Página Inicial',
 		roles: 'Funções',
-		turmas: 'Turmas',
-		page1: 'Página 1',
-		page2: 'Página 2',
-		page3: 'Página 3'
+		classes: 'Turmas'
 	};
 
 	function openMenu() {
 		isMenuOpen = !isMenuOpen;
-		console.log(isMenuOpen ? 'Menu aberto' : 'Menu fechado');
 	}
 
 	function openProfileOptions() {
@@ -27,11 +24,11 @@
 	}
 </script>
 
-<header>
+<header class="text-white">
 	<button class="menu-button" on:click={openMenu}> ☰ </button>
 
 	<div class="logo">
-		<img src="src/lib/images/logo_agendu.png" alt="Logo do Agendu" />
+		<img src={logoAgendu} alt="Logo do Agendu" />
 		<div class="user-info">
 			<p>{userName}</p>
 			<small>{pageNames[currentPage]}</small>
@@ -43,17 +40,16 @@
 	</button>
 </header>
 
-<div class="sidebar {isMenuOpen ? 'open' : ''}">
+<aside class="sidebar {isMenuOpen ? 'open' : ''} text-1_15">
 	<button class="close-btn" on:click={openMenu}>×</button>
 	<nav>
 		<ul>
-			<li><a href="#">Página 1</a></li>
-			<li><a href="#">Página 2</a></li>
-			<li><a href="#">Página 3</a></li>
-			<li><a href="#">Configurações</a></li>
+			{#each Object.entries(pageNames) as [key, value]}
+				<li><a class={currentPage === key ? 'text-green' : 'text-black'} href={key}>{value}</a></li>
+			{/each}
 		</ul>
 	</nav>
-</div>
+</aside>
 
 <style>
 	header {
@@ -62,7 +58,6 @@
 		align-items: center;
 		padding: 10px;
 		background-color: var(--primary-color-light);
-		color: white;
 		font-family: Arial, sans-serif;
 	}
 
@@ -108,7 +103,7 @@
 		width: 250px;
 		height: 100%;
 		background-color: #f0f0f0;
-		color: #333;
+		/* color: #333; */
 		transform: translateX(-100%);
 		transition: transform 0.3s ease;
 		padding-top: 20px;
@@ -123,7 +118,7 @@
 	.close-btn {
 		background: none;
 		border: none;
-		color: #333;
+		/* color: #333; */
 		font-size: 24px;
 		position: absolute;
 		top: 10px;
@@ -142,8 +137,7 @@
 	}
 
 	.sidebar nav ul li a {
-		color: #333;
 		text-decoration: none;
-		font-size: 18px;
+		/* font-size: 18px; */
 	}
 </style>
