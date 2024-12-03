@@ -1,5 +1,12 @@
 import { fail, redirect } from '@sveltejs/kit';
 
+/** @satisfies {import('./$types').PageServerLoad} */
+export function load({ locals }) {
+	if (locals.user) {
+		return redirect(302, '/home');
+	}
+}
+
 /** @satisfies {import('./$types').Actions} */
 export const actions = {
 	default: async ({ request, fetch, cookies }) => {
