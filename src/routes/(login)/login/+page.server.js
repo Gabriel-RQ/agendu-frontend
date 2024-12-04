@@ -18,13 +18,19 @@ export const actions = {
 			return fail(400, { error: 'Preencha os dados de login' });
 		}
 
-		const response = await fetch('http://localhost:8080/users/login', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({ email: data.get('email'), password: data.get('password') })
-		});
+		let response;
+
+		try {
+			response = await fetch('http://localhost:8080/users/login', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({ email: data.get('email'), password: data.get('password') })
+			});
+		} catch {
+			return fail(500, { error: 'Erro ao processar login' });
+		}
 
 		if (response.ok) {
 			const tokenResponse = await response.json();
