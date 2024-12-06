@@ -1,88 +1,49 @@
 <script>
 	import { faSearch, faPlus } from '@fortawesome/free-solid-svg-icons';
-	import { IconButton } from '$lib';
+	import { IconButton, SearchBar } from '$lib';
+	import TablePage from '../TablePage.svelte';
 
-	const roles = [
-		{ id: 1, name: 'Professor' },
-		{ id: 2, name: 'Administrador' }
+	const headers = ['N°', 'Função'];
+
+	let data = [
+		{ id: 1, role: 'Professor' },
+		{ id: 2, role: 'Administrador' }
 	];
+
+	let showSearchBar = false;
+
+	const filter = (/** @type { {id: number; role: string}[]} */ data, /** @type {any}*/ value) =>
+		data.filter(
+			(d) => d.id === parseInt(value) || d.role.toLowerCase().includes(value.toLowerCase())
+		);
 </script>
 
-<section class="full-height container">
-	<div class="roles text-black">
-		<header>
-			<h1>Funções</h1>
-			<span class="header-buttons">
-				<IconButton
-					icon={faPlus}
-					iconData={{ color: 'var(--primary-color-light)', size: 'lg', scale: '1.25' }}
-				/>
+<TablePage {headers} title="Funções">
+	<span class="table-header-buttons" slot="header-content">
+		<IconButton
+			icon={faPlus}
+			iconData={{ color: 'var(--primary-color-light)', size: 'lg', scale: '1.5' }}
+		/>
 
-				<IconButton
-					icon={faSearch}
-					iconData={{ color: 'var(--primary-color-light)', size: 'lg', scale: '1.25' }}
-				/>
-			</span>
-		</header>
+		<IconButton
+			icon={faSearch}
+			iconData={{ color: 'var(--primary-color-light)', size: 'lg', scale: '1.5' }}
+			on:click={() => (showSearchBar = !showSearchBar)}
+		/>
+	</span>
 
-		<table class="full-width">
-			<thead>
-				<tr>
-					<th>N°</th>
-					<th>Função</th>
-				</tr>
-			</thead>
+	<svelte:fragment slot="header-searchbar">
+		{#if showSearchBar}
+			<SearchBar bind:data {filter} hint="Pesquisar..." expanded />
+		{/if}
+	</svelte:fragment>
 
-			<tbody>
-				{#each roles as role}
-					<tr>
-						<td>{role.id}</td>
-						<td>{role.name}</td>
-					</tr>
-				{/each}
-			</tbody>
-		</table>
-	</div>
-</section>
-
-<style>
-	.roles {
-		/* box-shadow: #000 0px 0px 10px -5px; */
-		border-radius: 1rem;
-		padding: 0.75rem;
-	}
-
-	header {
-		align-items: center;
-		display: flex;
-		justify-content: space-between;
-		margin-bottom: 1rem;
-	}
-
-	.header-buttons {
-		display: flex;
-		gap: 1.25rem;
-	}
-
-	table {
-		table-layout: fixed;
-		text-align: left;
-	}
-
-	thead {
-		background: #eef3f7;
-		height: 2rem;
-	}
-
-	th {
-		padding: 0.75rem 0.5rem;
-	}
-
-	td {
-		padding: 0.5rem;
-	}
-
-	tr:hover {
-		background-color: #f1f1f1;
-	}
-</style>
+	<svelte:fragment slot="table-content">
+		{#each data as role}
+			<tr>
+				<td>{role.id}</td>
+				<td>{role.role}</td>
+			</tr>
+		{/each}
+	</svelte:fragment>
+</TablePage>
