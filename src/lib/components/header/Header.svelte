@@ -11,8 +11,11 @@
 	/** @type { {[key: string] : string} }*/
 	const pageNames = {
 		home: 'Página Inicial',
+		timeline: 'Cronograma',
 		roles: 'Funções',
-		classes: 'Turmas'
+		pulic: 'Planilhas Públicas',
+		classes: 'Turmas',
+		users: 'Usuários',		
 	};
 
 	function openMenu() {
