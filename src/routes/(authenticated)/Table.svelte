@@ -5,24 +5,31 @@
 	export { className as class };
 </script>
 
-<table class="full-width table {className}">
-	<thead>
-		<tr>
-			{#each headers as header}
-				<th>{header}</th>
-			{/each}
-		</tr>
-	</thead>
+<div class="full-width">
+	<table class="full-width table {className}">
+		<thead>
+			<tr>
+				{#each headers as header}
+					<th>{header}</th>
+				{/each}
+			</tr>
+		</thead>
 
-	<tbody>
-		<slot />
-	</tbody>
-</table>
+		<tbody>
+			<slot />
+		</tbody>
+	</table>
+</div>
 
 <style>
+	div {
+		overflow-x: scroll;
+		max-width: calc(100vw - 4rem);
+	}
+
 	table {
-		table-layout: fixed;
 		text-align: left;
+		border-collapse: collapse;
 	}
 
 	thead {
@@ -32,6 +39,7 @@
 
 	th {
 		padding: 0.75rem 0.5rem;
+		width: fit-content;
 	}
 
 	:global(td) {
