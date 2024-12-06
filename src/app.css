@@ -147,6 +147,13 @@ button {
 	display: none;
 }
 
+/* Páginas com tabelas */
+
+.table-header-buttons {
+	display: flex;
+	gap: 1.25rem;
+}
+
 /* Tela de login */
 
 .login-section-container {
