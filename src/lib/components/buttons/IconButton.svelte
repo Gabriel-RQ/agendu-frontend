@@ -14,7 +14,7 @@
 	export let iconData = null;
 
 	/** @type {string} */
-	let buttonClass = `${className} ${disabled ? 'disabled' : ''}`;
+	let buttonClass = `icon-btn ${className} ${disabled ? 'disabled' : ''}`;
 </script>
 
 {#if href}
