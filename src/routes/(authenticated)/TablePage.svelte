@@ -44,7 +44,7 @@
 			box-shadow: #000 0px 0px 10px -5px;
 			border-radius: 1rem;
 			display: block;
-			padding: 0.75rem;
+			padding: 2rem;
 		}
 	}
 </style>

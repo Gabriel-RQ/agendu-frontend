@@ -30,11 +30,13 @@
 			iconData={{ color: 'var(--primary-color-light)', size: 'lg', scale: '1.5' }}
 			on:click={() => (showSearchBar = !showSearchBar)}
 		/>
+
+		<SearchBar class="hidden" bind:data {filter} hint="Pesquisar..." expanded />
 	</span>
 
 	<svelte:fragment slot="header-searchbar">
 		{#if showSearchBar}
-			<SearchBar bind:data {filter} hint="Pesquisar..." expanded />
+			<SearchBar class="mobile-searchbar" bind:data {filter} hint="Pesquisar..." expanded />
 		{/if}
 	</svelte:fragment>
 
@@ -47,3 +49,21 @@
 		{/each}
 	</svelte:fragment>
 </TablePage>
+
+<style>
+	@media screen and (min-width: 992px) {
+		/* Otimiza o layout para telas maiores - esconde ícones e barras de pesquisa do mobile */
+		.table-header-buttons :global(.icon-btn) {
+			display: none;
+		}
+
+		.table-header-buttons :global(.searchbar) {
+			display: initial;
+		}
+
+		:global(.mobile-searchbar),
+		:global(.mobile-searchbar ~ .icon) {
+			display: none;
+		}
+	}
+</style>
