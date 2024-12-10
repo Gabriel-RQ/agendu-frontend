@@ -1,6 +1,5 @@
 <script>
 	import { scale } from 'svelte/transition';
-	import { hideModal } from './modal';
 
 	let className = '';
 	export { className as class };
@@ -8,7 +7,6 @@
 </script>
 
 <dialog class="{className} full-width full-height container" {open} in:scale={{ duration: 250 }}>
-	<button on:click={hideModal}>X</button>
 	<slot />
 </dialog>
 
