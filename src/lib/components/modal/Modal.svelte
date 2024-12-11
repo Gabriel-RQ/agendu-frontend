@@ -6,14 +6,33 @@
 	export let open = false;
 </script>
 
-<dialog class="{className} full-width full-height container" {open} in:scale={{ duration: 250 }}>
+<!-- TODO: Garantir que o foco nunca saia do modal! -->
+
+<section class="cover"></section>
+
+<dialog class="{className} container" {open} in:scale={{ duration: 250 }}>
 	<slot />
 </dialog>
 
 <style>
-	dialog {
+	dialog,
+	.cover {
 		position: fixed;
 		z-index: 10;
+	}
+
+	.cover {
+		background: rgba(0, 0, 0, 0.1);
+		backdrop-filter: blur(3px);
+		height: 100vh;
+		width: 100vw;
+	}
+
+	@media screen and (max-width: 992px) {
+		dialog {
+			min-width: 100vw;
+			min-height: 100vh;
+		}
 	}
 
 	@media screen and (min-width: 992px) {
@@ -24,7 +43,7 @@
 			left: 50%;
 			top: 50%;
 			transform: translate(-50%, -50%);
-			width: fit-content;
+			min-width: 35vw;
 		}
 	}
 </style>
