@@ -6,8 +6,12 @@
 	const headers = ['Id', 'Atividade'];
 
 	let data = [
-		{ id: 1, activity: 'Informática' },
-		{ id: 2, activity: 'Administrador' }
+		{ id: 1, activity: 'Aula' },
+		{ id: 2, activity: 'Informática' },
+        { id: 3, activity: 'Ed. Física' },
+        { id: 4, activity: 'Música' },
+        { id: 5, activity: 'Hora da Atividade' },
+        { id: 6, activity: 'Grupo' }
 	];
 
 	let showSearchBar = false;

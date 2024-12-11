@@ -3,12 +3,21 @@
 	import { IconButton, SearchBar } from '$lib';
 	import TablePage from '../TablePage.svelte';
 
-	const headers = ['Nº', 'TEMPO', 'DIA', 'Turma'];
+	const headers = ['Nº', 'Tempo', 'Dia', 'Turma'];
 
 	let data = [
-		{ id: 1, periods: 'Informática' },
-		{ id: 2, periods: 'Administrador' }
-	];
+		{ id: 2, periods: '' },
+        { id: 3, periods: ''},
+        { id: 4, periods: ''},
+        { id: 5, periods:'' },
+        { id: 6, periods:'' },
+        { id: 7, periods:'' },
+        { id: 8, periods:'' },
+        { id: 9, periods:'' },
+        { id: 10, periods:'' },
+        { id: 11, periods:'' },
+        { id: 12, periods:'' }
+    ];
 
 	let showSearchBar = false;
 
