@@ -5,9 +5,11 @@
 
 	/** @type {VoidFunction} */
 	export let onClose;
+	/** @type {boolean} */
+	export let expand = false;
 </script>
 
-<Modal class="add-role-modal" open>
+<Modal class="add-role-modal" open {expand}>
 	<header>
 		<h2>Cadastro de função</h2>
 		<IconButton
@@ -18,7 +20,7 @@
 		/>
 	</header>
 
-	<section class="container">
+	<section>
 		<form class="flex-column" action="">
 			<div class="flex-column input-wrapper">
 				<label class="font-medium text-1_15" for="description">Descrição</label>
@@ -37,6 +39,10 @@
 </Modal>
 
 <style>
+	:global(.add-role-modal) {
+		min-width: 85vw;
+	}
+
 	header {
 		display: grid;
 		grid-template-columns: auto 1fr auto;
@@ -46,6 +52,10 @@
 	h2 {
 		grid-column: 2;
 		text-align: center;
+	}
+
+	section {
+		padding: 2rem 0.5rem;
 	}
 
 	form {

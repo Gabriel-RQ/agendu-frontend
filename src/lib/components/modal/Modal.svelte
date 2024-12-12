@@ -4,17 +4,26 @@
 	let className = '';
 	export { className as class };
 	export let open = false;
+	export let expand = false;
 </script>
 
 <!-- TODO: Garantir que o foco nunca saia do modal! -->
 
 <section class="cover"></section>
 
-<dialog class="{className} container" {open} in:scale={{ duration: 250 }}>
+<dialog class="{className} {expand ? 'expanded' : ''}" {open} in:scale={{ duration: 250 }}>
 	<slot />
 </dialog>
 
 <style>
+	dialog {
+		border-radius: 12px;
+		left: 50%;
+		padding: 1.5rem;
+		top: 50%;
+		transform: translate(-50%, -50%);
+	}
+
 	dialog,
 	.cover {
 		position: fixed;
@@ -29,7 +38,7 @@
 	}
 
 	@media screen and (max-width: 992px) {
-		dialog {
+		dialog.expanded {
 			min-width: 100vw;
 			min-height: 100vh;
 		}
@@ -40,10 +49,8 @@
 			border-radius: 12px;
 			box-shadow: #000 0px 0px 10px -5px;
 			height: fit-content;
-			left: 50%;
-			top: 50%;
-			transform: translate(-50%, -50%);
 			min-width: 35vw;
+			padding: 2rem;
 		}
 	}
 </style>
