@@ -1,0 +1,80 @@
+<script>
+	import { IconButton } from '$lib';
+	import { clickOutside } from '$lib/util';
+	import { faClose } from '@fortawesome/free-solid-svg-icons';
+	import Fa from 'svelte-fa';
+	import { fly } from 'svelte/transition';
+
+	/** @type {string} */
+	export let currentPage;
+	/** @type { {[key: string] : {name: string; icon: import('@fortawesome/free-solid-svg-icons').IconDefinition}} }*/
+	export let pageNames;
+	/** @type { VoidFunction } */
+	export let onClose;
+</script>
+
+<aside
+	class="text-1_25"
+	use:clickOutside
+	on:clickOutside={onClose}
+	transition:fly={{ x: -300, duration: 300 }}
+>
+	<header>
+		<IconButton
+			class="close-btn"
+			icon={faClose}
+			iconData={{ size: 'lg', scale: '1.15', color: 'var(--text-white)' }}
+			on:click={onClose}
+		/>
+	</header>
+
+	<nav>
+		<ul class="flex-column">
+			{#each Object.entries(pageNames) as [page, data]}
+				<li class={currentPage == page ? 'current-page' : ''}>
+					<a class="text-white" href={page}>
+						<Fa icon={data.icon} size="sm" />
+						{data.name}
+					</a>
+				</li>
+			{/each}
+		</ul>
+	</nav>
+</aside>
+
+<style>
+	aside {
+		background: var(--primary-color-light);
+		box-shadow: rgba(0, 0, 0, 0.5) 0 0 15px 3px;
+		height: 100vh;
+		left: 0;
+		position: fixed;
+		top: 0;
+		z-index: 5;
+	}
+
+	header {
+		display: flex;
+		justify-content: end;
+		padding: 1rem 1.5rem;
+	}
+
+	ul {
+		list-style-type: none;
+		gap: 0.5rem;
+	}
+
+	li {
+		padding: 0.25rem 1.5rem;
+		transition: background 300ms ease-out;
+	}
+
+	li.current-page,
+	li:hover {
+		background: var(--primary-color-dark);
+	}
+
+	a :global(.svelte-fa) {
+		margin-right: 0.5rem;
+	}
+</style>

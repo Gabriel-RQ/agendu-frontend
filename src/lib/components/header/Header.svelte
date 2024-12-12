@@ -1,9 +1,17 @@
 <script>
 	import { page } from '$app/stores';
 	import logoAgendu from '../../images/logo_agendu.png';
-	import { clickOutside } from '$lib/util'; 
-	import {fly} from 'svelte/transition';
-
+	import SideNav from './SideNav.svelte';
+	import { IconButton } from '$lib';
+	import {
+		faBars,
+		faBlackboard,
+		faCalendar,
+		faGlobe,
+		faHome,
+		faUsers,
+		faWrench
+	} from '@fortawesome/free-solid-svg-icons';
 
 	let userName = 'Nome do Usuário';
 	$: currentPage = $page.route.id?.split('/').pop() ?? '';
@@ -11,14 +19,14 @@
 
 	//Mapeamento das rotas para os nomes da páginas - adicionar mais conforme  necessário
 
-	/** @type { {[key: string] : string} }*/
+	/** @type { {[key: string] : {name: string; icon: import('@fortawesome/free-solid-svg-icons').IconDefinition}} }*/
 	const pageNames = {
-		home: 'Página Inicial',
-		timeline: 'Cronograma',
-		roles: 'Funções',
-		pulic: 'Planilhas Públicas',
-		classes: 'Turmas',
-		users: 'Usuários',		
+		home: { name: 'Página Inicial', icon: faHome },
+		timeline: { name: 'Cronograma', icon: faCalendar },
+		roles: { name: 'Funções', icon: faWrench },
+		public: { name: 'Planilhas Públicas', icon: faGlobe },
+		classes: { name: 'Turmas', icon: faBlackboard },
+		users: { name: 'Usuários', icon: faUsers }
 	};
 
 	function openMenu() {
@@ -31,13 +39,17 @@
 </script>
 
 <header class="text-white">
-	<button class="menu-button" on:click={openMenu}> ☰ </button>
+	<IconButton
+		icon={faBars}
+		iconData={{ size: 'lg', scale: '1.15', color: 'var(--text-white)' }}
+		on:click={openMenu}
+	/>
 
 	<div class="logo">
 		<img src={logoAgendu} alt="Logo do Agendu" />
 		<div class="user-info">
 			<p>{userName}</p>
-			<small>{pageNames[currentPage]}</small>
+			<small>{pageNames[currentPage].name}</small>
 		</div>
 	</div>
 
@@ -46,22 +58,9 @@
 	</button>
 </header>
 
-{#key isMenuOpen}
-<aside 
-	class="sidebar {isMenuOpen ? 'open' : ''} text-1_15"
-	use:clickOutside on:clickOutside={() => (isMenuOpen = false)}
-	transition:fly="{{ x: -300, duration: 300 }}">
-
-	<button class="close-btn" on:click={openMenu}>×</button>
-	<nav>
-		<ul>
-			{#each Object.entries(pageNames) as [key, value]}
-				<li><a class={currentPage === key ? 'text-green' : 'text-black'} href={key}>{value}</a></li>
-			{/each}
-		</ul>
-	</nav>
-</aside>
-{/key}
+{#if isMenuOpen}
+	<SideNav {currentPage} {pageNames} onClose={() => (isMenuOpen = false)} />
+{/if}
 
 <style>
 	header {
@@ -71,14 +70,6 @@
 		padding: 10px;
 		background-color: var(--primary-color-light);
 		font-family: Arial, sans-serif;
-	}
-
-	.menu-button {
-		background: none;
-		border: none;
-		color: white;
-		font-size: 24px;
-		cursor: pointer;
 	}
 
 	.logo {
@@ -106,50 +97,5 @@
 	.profile-button img {
 		width: 30px;
 		border-radius: 50%;
-	}
-
-	.sidebar {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 250px;
-		height: 100%;
-		background-color: #f0f0f0;
-		/* color: #333; */
-		transform: translateX(-100%);
-		transition: transform 0.3s ease;
-		padding-top: 20px;
-		box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.5);
-		z-index: 1000;
-	}
-
-	.sidebar.open {
-		transform: translateX(0);
-	}
-
-	.close-btn {
-		background: none;
-		border: none;
-		/* color: #333; */
-		font-size: 24px;
-		position: absolute;
-		top: 10px;
-		right: 10px;
-		cursor: pointer;
-	}
-
-	.sidebar nav ul {
-		list-style-type: none;
-		padding: 0;
-		margin: 20px;
-	}
-
-	.sidebar nav ul li {
-		margin: 20px 0;
-	}
-
-	.sidebar nav ul li a {
-		text-decoration: none;
-		/* font-size: 18px; */
 	}
 </style>
