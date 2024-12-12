@@ -1,6 +1,9 @@
 <script>
 	import { page } from '$app/stores';
 	import logoAgendu from '../../images/logo_agendu.png';
+	import { clickOutside } from '$lib/util'; 
+	import {fly} from 'svelte/transition';
+
 
 	let userName = 'Nome do Usuário';
 	$: currentPage = $page.route.id?.split('/').pop() ?? '';
@@ -43,7 +46,12 @@
 	</button>
 </header>
 
-<aside class="sidebar {isMenuOpen ? 'open' : ''} text-1_15">
+{#key isMenuOpen}
+<aside 
+	class="sidebar {isMenuOpen ? 'open' : ''} text-1_15"
+	use:clickOutside on:clickOutside={() => (isMenuOpen = false)}
+	transition:fly="{{ x: -300, duration: 300 }}">
+
 	<button class="close-btn" on:click={openMenu}>×</button>
 	<nav>
 		<ul>
@@ -53,6 +61,7 @@
 		</ul>
 	</nav>
 </aside>
+{/key}
 
 <style>
 	header {
