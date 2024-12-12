@@ -58,9 +58,13 @@
 	</button>
 </header>
 
-{#if isMenuOpen}
-	<SideNav {currentPage} {pageNames} onClose={() => (isMenuOpen = false)} />
-{/if}
+<SideNav
+	class="sidenav-header"
+	open={isMenuOpen}
+	{currentPage}
+	{pageNames}
+	onClose={() => (isMenuOpen = false)}
+/>
 
 <style>
 	header {
@@ -97,5 +101,11 @@
 	.profile-button img {
 		width: 30px;
 		border-radius: 50%;
+	}
+
+	@media screen and (min-width: 992px) {
+		header {
+			display: none;
+		}
 	}
 </style>

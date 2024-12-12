@@ -5,6 +5,9 @@
 	import Fa from 'svelte-fa';
 	import { fly } from 'svelte/transition';
 
+	let className = '';
+	export { className as class };
+	export let open = false;
 	/** @type {string} */
 	export let currentPage;
 	/** @type { {[key: string] : {name: string; icon: import('@fortawesome/free-solid-svg-icons').IconDefinition}} }*/
@@ -13,44 +16,51 @@
 	export let onClose;
 </script>
 
-<aside
-	class="text-1_25"
-	use:clickOutside
-	on:clickOutside={onClose}
-	transition:fly={{ x: -300, duration: 300 }}
->
-	<header>
-		<IconButton
-			class="close-btn"
-			icon={faClose}
-			iconData={{ size: 'lg', scale: '1.15', color: 'var(--text-white)' }}
-			on:click={onClose}
-		/>
-	</header>
+{#key open}
+	<aside
+		class="text-1_25 {className} {open ? 'open' : ''}"
+		use:clickOutside
+		on:clickOutside={onClose}
+		transition:fly={{ x: -300, duration: 300 }}
+	>
+		<header>
+			<IconButton
+				class="sidenav-close-btn"
+				icon={faClose}
+				iconData={{ size: 'lg', scale: '1.15', color: 'var(--text-white)' }}
+				on:click={onClose}
+			/>
+		</header>
 
-	<nav>
-		<ul class="flex-column">
-			{#each Object.entries(pageNames) as [page, data]}
-				<li class={currentPage == page ? 'current-page' : ''}>
-					<a class="text-white" href={page}>
-						<Fa icon={data.icon} size="sm" />
-						{data.name}
-					</a>
-				</li>
-			{/each}
-		</ul>
-	</nav>
-</aside>
+		<nav>
+			<ul class="flex-column">
+				{#each Object.entries(pageNames) as [page, data]}
+					<li class={currentPage == page ? 'current-page' : ''}>
+						<a class="text-white" href={page}>
+							<Fa icon={data.icon} size="sm" />
+							{data.name}
+						</a>
+					</li>
+				{/each}
+			</ul>
+		</nav>
+	</aside>
+{/key}
 
 <style>
 	aside {
 		background: var(--primary-color-light);
 		box-shadow: rgba(0, 0, 0, 0.5) 0 0 15px 3px;
+		display: none;
 		height: 100vh;
 		left: 0;
 		position: fixed;
 		top: 0;
 		z-index: 5;
+	}
+
+	aside.open {
+		display: inline-block;
 	}
 
 	header {
@@ -76,5 +86,17 @@
 
 	a :global(.svelte-fa) {
 		margin-right: 0.5rem;
+	}
+
+	@media screen and (min-width: 992px) {
+		aside {
+			box-shadow: none;
+			display: inline-block;
+			position: relative;
+		}
+
+		:global(.sidenav-close-btn) {
+			display: none;
+		}
 	}
 </style>
