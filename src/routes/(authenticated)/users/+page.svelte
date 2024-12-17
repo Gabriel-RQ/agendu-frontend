@@ -1,136 +1,104 @@
 <script>
-	import { IconButton } from '$lib';
-	import { faPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
-	import { scale } from 'svelte/transition';
-	import { cubicOut } from 'svelte/easing';
+	import { Button, IconButton, SearchBar  } from '$lib';
+	import { faSearch, faPlus, faAdd } from '@fortawesome/free-solid-svg-icons';
 	import { faUser } from '@fortawesome/free-solid-svg-icons';
+	import TablePage from '../TablePage.svelte';
+	import AddUserModal from './AddUserModal.svelte';
+	import { showModal, hideModal } from '$lib/components/modal';
 	import Fa from 'svelte-fa';
 
-	const users = [
-		{ id: 1, foto: faUser, name: 'Regina', cargo: 'Diretora', turma: 1 },
-		{ id: 2, foto: faUser, name: 'Taísa', cargo: 'Professora', turma: 2 },
-		{ id: 3, foto: faUser, name: 'Ana', cargo: 'Professora', turma: 3 }
+	
+	const headers = ['ID', 'Foto', 'Nome', 'Cargo', 'N° de Turmas'];
+	let data = [
+		{ id: 1, photo: faUser, name: 'Regina', role: 'Diretora', numClasses: 1 },
+		{ id: 2, photo: faUser, name: 'Taísa', role: 'Professora', numClasses: 2 },
+		{ id: 3, photo: faUser, name: 'Ana', role: 'Professora', numClasses: 3 }
 	];
 
-	let showSearch = false; // Estado para controlar a exibição da caixa de busca
-	let searchTerm = ''; // Estado para armazenar o termo de busca
+	let showSearchBar = false; // Estado para controlar a exibição da caixa de busca
+	// let searchTerm = ''; // Estado para armazenar o termo de busca
 
 	function toggleSearch() {
-		showSearch = !showSearch;
+		showSearchBar = !showSearchBar;
 	}
+	const showModalAction = () =>
+    showModal({ component: AddUserModal, props: { onClose: hideModal } });
+	
+	const filter = (/** @type { {id: number; role: string}[]} */ data, /** @type {any}*/ value) =>
+		data.filter(
+			(d) => d.id === parseInt(value) || d.role.toLowerCase().includes(value.toLowerCase())
+		);
 </script>
 
-<section class="full-height container">
-	<div class="roles text-black">
-		<header>
-			<h1>Usuários</h1>
-			<span class="header-buttons">
-				<IconButton
-					icon={faPlus}
-					iconData={{ color: 'var(--primary-color-light)', size: 'lg', scale: '1.25' }}
-				/>
-				<IconButton
-					icon={faSearch}
-					iconData={{ color: 'var(--primary-color-light)', size: 'lg', scale: '1.25' }}
-					on:click={toggleSearch}
-				/>
-			</span>
-		</header>
+<TablePage {headers} title="Funções">
+	<span class="table-header-buttons" slot="header-content">
+		<IconButton
+			class="hide-on-desktop"
+			icon={faPlus}
+			iconData={{ color: 'var(--primary-color-light)', size: 'lg', scale: '1.5' }}
+			on:click={showModalAction}
+		/>
 
-		{#if showSearch}
-			<div class="search-box" transition:scale={{ duration: 300, easing: cubicOut }}>
-				<input type="text" placeholder="Pesquisar..." bind:value={searchTerm} />
-			</div>
+		<IconButton
+			class="hide-on-desktop"
+			icon={faSearch}
+			iconData={{ color: 'var(--primary-color-light)', size: 'lg', scale: '1.5' }}
+			on:click={() => (showSearchBar = !showSearchBar)}
+		/>
+
+		<Button class="hide-on-mobile new-btn" on:click={showModalAction}>
+			<Fa icon={faAdd} />
+			<p class="text-white font-medium text-1_25">Adicionar</p>
+		</Button>
+
+		<SearchBar class="hidden" bind:data {filter} hint="Pesquisar..." expanded />
+	</span>
+
+	<svelte:fragment slot="header-searchbar">
+		{#if showSearchBar}
+			<SearchBar class="mobile-searchbar" bind:data {filter} hint="Pesquisar..." expanded />
 		{/if}
+	</svelte:fragment>
 
-		<table>
-			<thead>
-				<tr>
-					<th>N.º</th>
-					<th>FOTO</th>
-					<th>NOME</th>
-					<th>CARGO</th>
-					<th>N.º TURMAS</th>
-				</tr>
-			</thead>
-
-			<tbody>
-				{#each users as user}
-					<tr>
-						<td>{user.id}</td>
-						<td><Fa icon={user.foto} /></td>
-						<td>{user.name}</td>
-						<td>{user.cargo}</td>
-						<td>{user.turma}</td>
-					</tr>
-				{/each}
-			</tbody>
-		</table>
-	</div>
-</section>
+	<svelte:fragment slot="table-content">
+		{#each data as user}
+			<tr>
+				<td>{user.id}</td>
+				<td><Fa icon={user.photo} /></td>
+				<td>{user.name}</td>
+				<td>{user.role}</td>
+				<td>{user.numClasses}</td>
+			</tr>
+		{/each}
+	</svelte:fragment>
+</TablePage>
 
 <style>
-	.roles {
-		/* Epaçamento para versão mobile */
-		/* box-shadow: #000 0px 0px 10px -5px; */
-		border-radius: 1rem;
-		padding: 0.75rem;
+	:global(.hide-on-mobile.new-btn) {
+		display: none;
 	}
 
-	header {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		margin-bottom: 1rem;
-	}
+	@media screen and (min-width: 992px) {
+		/* Otimiza o layout para telas maiores - esconde ícones e barras de pesquisa do mobile */
+		.table-header-buttons :global(.icon-btn.hide-on-desktop) {
+			display: none;
+		}
 
-	.header-buttons {
-		display: flex;
-		gap: 1rem;
-	}
+		.table-header-buttons :global(.searchbar) {
+			display: initial;
+		}
 
-	table {
-		width: 100%;
-		border-collapse: collapse;
-	}
+		:global(.hide-on-mobile.new-btn) {
+			align-items: center;
+			display: flex;
+			padding: 0 0.75rem;
+			gap: 0.5rem;
+			justify-content: center;
+		}
 
-	th {
-		width: 33.33%;
-		text-align: left;
-	}
-	th:last-child,
-	td:last-child {
-		text-align: center;
-		white-space: nowrap;
-		width: 10%;
-	}
-
-	.search-box {
-		margin-bottom: 1rem;
-		display: flex;
-		justify-content: center;
-	}
-
-	.search-box input {
-		padding: 1rem 0.5rem;
-		border: 1px solid #ccc;
-		border-radius: 0.25rem;
-		font-size: 1rem;
-		width: 100%;
-	}
-	thead {
-		background-color: #eef3f3;
-		height: 2rem;
-	}
-	th {
-		padding: 0.75rem 0.5rem;
-	}
-	td {
-		padding: 0.5rem;
-	}
-	tr:hover {
-		background-color: #f1f1f1;
-	}
-	@media (min-width: 992px) {
+		:global(.mobile-searchbar),
+		:global(.mobile-searchbar ~ .icon) {
+			display: none;
+		}
 	}
 </style>
