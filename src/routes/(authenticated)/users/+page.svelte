@@ -5,6 +5,7 @@
 	import TablePage from '../TablePage.svelte';
 	import AddUserModal from './AddUserModal.svelte';
 	import { showModal, hideModal } from '$lib/components/modal';
+	import { removeAccents } from '$lib/util';
 	import Fa from 'svelte-fa';
 
 	
@@ -23,11 +24,18 @@
 	}
 	const showModalAction = () =>
     showModal({ component: AddUserModal, props: { onClose: hideModal } });
+
 	
-	const filter = (/** @type { {id: number; role: string}[]} */ data, /** @type {any}*/ value) =>
-		data.filter(
-			(d) => d.id === parseInt(value) || d.role.toLowerCase().includes(value.toLowerCase())
-		);
+	const filter = (/** @type { {id: number; role: string; name: string}[]} */ data, /** @type {any}*/ value) => {
+		const normalizedValue = removeAccents(value.toLowerCase());
+
+	return data.filter(
+		(d) =>
+			d.id === parseInt(value) ||
+			removeAccents(d.role.toLowerCase()).includes(normalizedValue) ||
+			removeAccents(d.name.toLowerCase()).includes(normalizedValue)
+	);
+};
 </script>
 
 <TablePage {headers} title="Funções">
