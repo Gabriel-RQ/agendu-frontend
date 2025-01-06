@@ -22,7 +22,7 @@
 		<Fa {icon} {...iconData} />
 	</a>
 {:else}
-	<button class={buttonClass} on:click on:keydown on:keyup>
+	<button class={buttonClass} on:click on:keydown on:keyup type="button">
 		<Fa {icon} {...iconData} />
 	</button>
 {/if}

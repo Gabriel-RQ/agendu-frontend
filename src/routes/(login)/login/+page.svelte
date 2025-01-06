@@ -4,6 +4,7 @@
 	import { faArrowLeft, faEnvelope, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 	import { scale } from 'svelte/transition';
 	import { enhance } from '$app/forms';
+	import IconButton from '$lib/components/buttons/IconButton.svelte';
 
 	let showPassword = false;
 
@@ -28,9 +29,12 @@
 			<label for="password">Senha</label>
 
 			<Input id="password" name="password" type={showPassword ? 'text' : 'password'} expanded>
-				<button slot="icon" on:click|preventDefault={() => (showPassword = !showPassword)}>
-					<Fa icon={showPassword ? faEyeSlash : faEye} color="var(--icon-color)" />
-				</button>
+				<IconButton
+					icon={showPassword ? faEyeSlash : faEye}
+					slot="icon"
+					on:click={() => (showPassword = !showPassword)}
+					iconData={{ color: 'var(--icon-color)' }}
+				/>
 			</Input>
 
 			<!-- TODO: Mudar tag para a correta quando for implementar -->
