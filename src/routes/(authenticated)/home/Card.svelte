@@ -9,7 +9,7 @@
 
 <div class="card flex-column-center">
 	<Fa {icon} size="lg" scale="2" />
-	<p>{title}</p>
+	<p class="font-medium">{title}</p>
 </div>
 
 <style>
@@ -22,5 +22,11 @@
 		gap: 1rem;
 		padding: 20px;
 		text-align: center;
+	}
+
+	@media screen and (min-width: 992px) {
+		.card {
+			font-size: 18px;
+		}
 	}
 </style>

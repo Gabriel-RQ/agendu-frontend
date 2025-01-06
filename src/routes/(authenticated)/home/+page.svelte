@@ -53,4 +53,11 @@
 		font-size: 18px;
 		gap: 1rem;
 	}
+
+	@media screen and (min-width: 992px) {
+		.grid {
+			width: 75%;
+			padding: 1rem;
+		}
+	}
 </style>
