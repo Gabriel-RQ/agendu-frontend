@@ -26,7 +26,8 @@
 		roles: { name: 'Funções', icon: faWrench },
 		public: { name: 'Planilhas Públicas', icon: faGlobe },
 		classes: { name: 'Turmas', icon: faBlackboard },
-		users: { name: 'Usuários', icon: faUsers }
+		users: { name: 'Usuários', icon: faUsers },
+		resources: { name: 'Recursos', icon: faWrench }
 	};
 
 	function openMenu() {
