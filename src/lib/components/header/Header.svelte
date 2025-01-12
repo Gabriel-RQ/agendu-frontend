@@ -10,7 +10,8 @@
 		faGlobe,
 		faHome,
 		faUsers,
-		faWrench
+		faWrench,
+		faSchool
 	} from '@fortawesome/free-solid-svg-icons';
 
 	let userName = 'Nome do Usuário';
@@ -27,7 +28,7 @@
 		public: { name: 'Planilhas Públicas', icon: faGlobe },
 		classes: { name: 'Turmas', icon: faBlackboard },
 		users: { name: 'Usuários', icon: faUsers },
-		resources: { name: 'Recursos', icon: faWrench }
+		resources: { name: 'Recursos', icon: faSchool }
 	};
 
 	function openMenu() {
