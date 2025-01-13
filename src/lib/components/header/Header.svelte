@@ -1,6 +1,7 @@
 <script>
 	import { page } from '$app/stores';
 	import logoAgendu from '../../images/logo_agendu.png';
+	import profileIcon from '../../images/foto_perfil_dummy.png';
 	import SideNav from './SideNav.svelte';
 	import { IconButton } from '$lib';
 	import {
@@ -56,7 +57,7 @@
 	</div>
 
 	<button class="profile-button" on:click={openProfileOptions}>
-		<img src="src/lib/images/foto_perfil_dummy.png" alt="Foto de perfil" />
+		<img src={profileIcon} alt="Foto de perfil" />
 	</button>
 </header>
 

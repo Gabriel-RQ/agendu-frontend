@@ -1,6 +1,7 @@
 <script>
 	import { IconButton } from '$lib';
 	import { clickOutside } from '$lib/util';
+	import profileIcon from '../../images/foto_perfil_dummy.png';
 	import { faClose } from '@fortawesome/free-solid-svg-icons';
 	import Fa from 'svelte-fa';
 	import { fly } from 'svelte/transition';
@@ -24,6 +25,10 @@
 		transition:fly={{ x: -300, duration: 300 }}
 	>
 		<header>
+			<div class="hidden profile-icon">
+				<img src={profileIcon} alt="Foto de perfil" />
+				<h3 class="text-single font-medium">Gabriela</h3>
+			</div>
 			<IconButton
 				class="sidenav-close-btn"
 				icon={faClose}
@@ -89,6 +94,19 @@
 	}
 
 	@media screen and (min-width: 992px) {
+		header {
+			display: flex;
+			justify-content: center;
+		}
+		.profile-icon {
+			display: grid;
+			place-items: center;
+		}
+		img {
+			border-radius: 100%;
+			height: 75%;
+		}
+
 		aside {
 			box-shadow: none;
 			display: inline-block;
