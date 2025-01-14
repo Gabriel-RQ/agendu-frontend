@@ -45,6 +45,10 @@
 		showModal({ component: AddClassModal, props: { onClose: hideModal } });
 </script>
 
+<svelte:head>
+	<title>Agendu | Turmas</title>
+</svelte:head>
+
 <TablePage {headers} {title}>
 	<span class="table-header-buttons" slot="header-content">
 		<IconButton

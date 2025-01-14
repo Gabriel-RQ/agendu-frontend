@@ -1,5 +1,5 @@
 <script>
-	import { Button, IconButton, SearchBar  } from '$lib';
+	import { Button, IconButton, SearchBar } from '$lib';
 	import { faSearch, faPlus, faAdd } from '@fortawesome/free-solid-svg-icons';
 	import { faUser } from '@fortawesome/free-solid-svg-icons';
 	import TablePage from '../TablePage.svelte';
@@ -8,7 +8,6 @@
 	import { removeAccents } from '$lib/util';
 	import Fa from 'svelte-fa';
 
-	
 	const headers = ['ID', 'Foto', 'Nome', 'Cargo', 'N° de Turmas'];
 	let data = [
 		{ id: 1, photo: faUser, name: 'Regina', role: 'Diretora', numClasses: 1 },
@@ -23,20 +22,26 @@
 		showSearchBar = !showSearchBar;
 	}
 	const showModalAction = () =>
-    showModal({ component: AddUserModal, props: { onClose: hideModal } });
+		showModal({ component: AddUserModal, props: { onClose: hideModal } });
 
-	
-	const filter = (/** @type { {id: number; role: string; name: string}[]} */ data, /** @type {any}*/ value) => {
+	const filter = (
+		/** @type { {id: number; role: string; name: string}[]} */ data,
+		/** @type {any}*/ value
+	) => {
 		const normalizedValue = removeAccents(value.toLowerCase());
 
-	return data.filter(
-		(d) =>
-			d.id === parseInt(value) ||
-			removeAccents(d.role.toLowerCase()).includes(normalizedValue) ||
-			removeAccents(d.name.toLowerCase()).includes(normalizedValue)
-	);
-};
+		return data.filter(
+			(d) =>
+				d.id === parseInt(value) ||
+				removeAccents(d.role.toLowerCase()).includes(normalizedValue) ||
+				removeAccents(d.name.toLowerCase()).includes(normalizedValue)
+		);
+	};
 </script>
+
+<svelte:head>
+	<title>Agendu | Usuários</title>
+</svelte:head>
 
 <TablePage {headers} title="Funções">
 	<span class="table-header-buttons" slot="header-content">

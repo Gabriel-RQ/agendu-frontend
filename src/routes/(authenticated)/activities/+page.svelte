@@ -8,10 +8,10 @@
 	let data = [
 		{ id: 1, activity: 'Aula' },
 		{ id: 2, activity: 'Informática' },
-        { id: 3, activity: 'Ed. Física' },
-        { id: 4, activity: 'Música' },
-        { id: 5, activity: 'Hora da Atividade' },
-        { id: 6, activity: 'Grupo' }
+		{ id: 3, activity: 'Ed. Física' },
+		{ id: 4, activity: 'Música' },
+		{ id: 5, activity: 'Hora da Atividade' },
+		{ id: 6, activity: 'Grupo' }
 	];
 
 	let showSearchBar = false;
@@ -21,6 +21,10 @@
 			(d) => d.id === parseInt(value) || d.role.toLowerCase().includes(value.toLowerCase())
 		);
 </script>
+
+<svelte:head>
+	<title>Agendu | Atividades</title>
+</svelte:head>
 
 <TablePage {headers} title="Funções">
 	<span class="table-header-buttons" slot="header-content">

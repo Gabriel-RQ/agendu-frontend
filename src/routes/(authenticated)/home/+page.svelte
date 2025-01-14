@@ -19,6 +19,10 @@
 	];
 </script>
 
+<svelte:head>
+	<title>Agendu | Home</title>
+</svelte:head>
+
 <section class="container flex-column-center full-height">
 	<!-- Área de navegação principal em cards -->
 	<div class="grid">

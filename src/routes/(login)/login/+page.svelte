@@ -12,6 +12,10 @@
 	export let form;
 </script>
 
+<svelte:head>
+	<title>Agendu | Login</title>
+</svelte:head>
+
 <section in:scale={{ duration: 300 }} class="login-section-container container full-height">
 	<span class="titulo flex-row-center">
 		<h1 class="text-1_75 text-green">Informações de Login</h1>

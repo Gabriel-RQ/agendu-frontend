@@ -24,6 +24,10 @@
 		showModal({ component: AddRoleModal, props: { onClose: hideModal } });
 </script>
 
+<svelte:head>
+	<title>Agendu | Funções</title>
+</svelte:head>
+
 <TablePage {headers} title="Funções">
 	<span class="table-header-buttons" slot="header-content">
 		<IconButton
