@@ -22,6 +22,8 @@
 		padding: 1.5rem;
 		top: 50%;
 		transform: translate(-50%, -50%);
+		max-height: 90vh;
+		overflow-y: scroll;
 	}
 
 	dialog,

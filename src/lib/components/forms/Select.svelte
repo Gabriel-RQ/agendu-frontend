@@ -1,13 +1,14 @@
 <script>
+	import Fa from 'svelte-fa';
+	import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+
 	/** @type {string} */
 	let className = '';
 	export { className as class };
-	/** @type {string} */
-	export let type = 'text';
 	/** @type {string?} */
 	export let value = null;
 	/** @type {string?} */
-	export let placeholder = null;
+	export let placeholder = null; // Pode ser utilizado em um <option> inicial
 	/** @type {string?} */
 	export let name = null;
 	/** @type {string?} */
@@ -16,37 +17,35 @@
 	export let disabled = false;
 	/** @type {boolean} */
 	export let expanded = false;
-	/**@type {number?} */
-	export let min = null;
-	/**@type {number?} */
-	export let max = null;
+	/** @type {{ value: string, label: string }[]} */
+	export let options = [];
 
-	let inputClass = `input ${className} ${expanded ? 'expanded' : ''}`;
+	let selectClass = `select ${className} ${expanded ? 'expanded' : ''}`;
 </script>
 
 <span class="wrapper {expanded ? 'expanded' : ''}">
-	<input
-		class={inputClass}
+	<select
+		class={selectClass}
 		{id}
 		{name}
-		{...{ type }}
-		{placeholder}
 		bind:value
 		{disabled}
-		{max}
-		{min}
 		on:blur
-		on:input
 		on:change
 		on:click
-		on:keypress
-		on:keyup
-	/>
-	{#if $$slots.icon}
-		<span class="icon">
-			<slot name="icon" />
-		</span>
-	{/if}
+		on:focus
+		on:keydown
+	>
+		{#if placeholder}
+			<option value="" disabled selected>{placeholder}</option>
+		{/if}
+		{#each options as { value: optionValue, label }}
+			<option value={optionValue}>{label}</option>
+		{/each}
+	</select>
+	<span class="icon">
+		<Fa icon={faChevronDown} />
+	</span>
 </span>
 
 <style>
@@ -57,30 +56,24 @@
 		color: var(--color);
 	}
 
-	input {
+	select {
 		background: transparent;
 		border: rgba(var(--color), 0.5) solid 1px;
 		border-radius: 10px;
 		outline: none;
 		padding: 0.75rem 1rem;
 		height: 62px;
+		width: 100%;
+		appearance: none;
+		cursor: pointer;
 	}
 
-	.wrapper:has(input:invalid):not(:focus-within) {
-		--icon-color: var(--text-red);
-	}
-
-	.wrapper:focus-within {
-		--icon-color: var(--primary-color);
-		color: var(--primary-color);
-	}
-
-	input:invalid {
+	select:invalid {
 		border-color: var(--text-red);
 		color: var(--text-red);
 	}
 
-	input:focus {
+	select:focus {
 		border-color: var(--primary-color);
 		color: var(--primary-color);
 	}
@@ -94,13 +87,20 @@
 		right: 2rem;
 		top: 50%;
 		transform: translateY(-50%);
+		pointer-events: none;
+		color: var(--icon-color);
 	}
 
-	.wrapper:has(input:disabled) {
+	.wrapper:focus-within {
+		--icon-color: var(--primary-color);
+		color: var(--primary-color);
+	}
+
+	.wrapper:has(select:disabled) {
 		color: rgb(var(--color));
 	}
 
-	.wrapper:has(input.hidden) :global(.icon) {
+	.wrapper:has(select.hidden) :global(.icon) {
 		display: none;
 	}
 </style>
