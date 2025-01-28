@@ -11,7 +11,7 @@
 		faGlobe,
 		faHome,
 		faUsers,
-		faWrench,
+		faListCheck,
 		faSchool,
 		faFileContract
 	} from '@fortawesome/free-solid-svg-icons';
@@ -26,7 +26,7 @@
 	const pageNames = {
 		home: { name: 'Página Inicial', icon: faHome },
 		timeline: { name: 'Cronograma', icon: faCalendar },
-		roles: { name: 'Funções', icon: faWrench },
+		roles: { name: 'Funções', icon: faListCheck },
 		public: { name: 'Planilhas Públicas', icon: faGlobe },
 		classes: { name: 'Turmas', icon: faBlackboard },
 		users: { name: 'Usuários', icon: faUsers },

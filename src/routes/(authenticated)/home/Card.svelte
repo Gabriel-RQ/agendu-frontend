@@ -5,12 +5,15 @@
 	export let icon;
 	/** @type { string }*/
 	export let title;
+	/** @type {string} */
+	export let link = "#";
+
 </script>
 
-<div class="card flex-column-center">
+<a href={link} class="card flex-column-center">
 	<Fa {icon} size="lg" scale="2" />
 	<p class="font-medium">{title}</p>
-</div>
+</a>
 
 <style>
 	.card {
