@@ -2,6 +2,7 @@
 	import { faClose } from '@fortawesome/free-solid-svg-icons';
 	import { Modal } from '$lib/components/modal';
 	import { Button, IconButton, Input } from '$lib';
+	import { enhance } from '$app/forms';
 
 	/** @type {VoidFunction} */
 	export let onClose;
@@ -21,7 +22,7 @@
 	</header>
 
 	<section>
-		<form class="flex-column" action="">
+		<form class="flex-column" action="?/resources" method="post" use:enhance>
 			<div class="flex-column input-wrapper">
 				<label class="font-medium text-1_15" for="resource-name">Nome do Recurso</label>
 				<Input
