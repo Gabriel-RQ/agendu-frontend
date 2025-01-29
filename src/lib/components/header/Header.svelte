@@ -13,7 +13,8 @@
 		faUsers,
 		faWrench,
 		faSchool,
-		faFileContract
+		faFileContract,
+		faBook
 	} from '@fortawesome/free-solid-svg-icons';
 
 	let userName = 'Nome do Usuário';
