@@ -26,12 +26,13 @@
 	const pageNames = {
 		home: { name: 'Página Inicial', icon: faHome },
 		timeline: { name: 'Cronograma', icon: faCalendar },
-		roles: { name: 'Funções', icon: faWrench },
+		users: { name: 'Usuários', icon: faUsers },
+		contracts: { name: 'Contratos', icon: faFileContract },
 		public: { name: 'Planilhas Públicas', icon: faGlobe },
 		classes: { name: 'Turmas', icon: faBlackboard },
-		users: { name: 'Usuários', icon: faUsers },
+		roles: { name: 'Funções', icon: faWrench },
 		resources: { name: 'Recursos', icon: faSchool },
-		contracts: { name: 'Contratos', icon: faFileContract }
+		activities: { name: 'Atividades', icon: faBook }
 	};
 
 	function openMenu() {
