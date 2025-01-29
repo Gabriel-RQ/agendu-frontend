@@ -6,30 +6,34 @@
 	import { hideModal, showModal } from '$lib/components/modal';
 	import Fa from 'svelte-fa';
 
+	/** @type {import('./$types').PageData} */
+	export let data;
+	/** @type {import('./$types').ActionData} */
+	export let form;
+
 	// Cabeçalhos da tabela
 	const headers = ['N°', 'Recurso'];
 
 	// Dados iniciais da tabela
-	let data = [
-		{ id: 1, resource: 'Ginásio' },
-		{ id: 2, resource: 'Laboratório de Informática' }
-	];
+	$: resources = data.resources ?? [];
 
 	// Estado para mostrar/esconder a barra de pesquisa
 	let showSearchBar = false;
 
 	// Função de filtro para a pesquisa
-	const filter = (
-		/** @type { {id: number; resource: string}[]} */ data,
-		/** @type {any} */ value
-	) =>
+	const filter = (/** @type { {id: number; name: string}[]} */ data, /** @type {any} */ value) =>
 		data.filter(
-			(d) => d.id === parseInt(value) || d.resource.toLowerCase().includes(value.toLowerCase())
+			(d) => d.id === parseInt(value) || d.name.toLowerCase().includes(value.toLowerCase())
 		);
 
 	// Ação para exibir o modal de adicionar recurso
 	const showModalAction = () =>
-		showModal({ component: AddResourceModal, props: { onClose: hideModal } });
+		showModal({
+			component: AddResourceModal,
+			props: {
+				onClose: hideModal
+			}
+		});
 </script>
 
 <svelte:head>
@@ -57,20 +61,26 @@
 			<p class="text-white font-medium text-1_25">Adicionar</p>
 		</Button>
 
-		<SearchBar class="hidden" bind:data {filter} hint="Pesquisar..." expanded />
+		<SearchBar class="hidden" bind:data={data.resources} {filter} hint="Pesquisar..." expanded />
 	</span>
 
 	<svelte:fragment slot="header-searchbar">
 		{#if showSearchBar}
-			<SearchBar class="mobile-searchbar" bind:data {filter} hint="Pesquisar..." expanded />
+			<SearchBar
+				class="mobile-searchbar"
+				bind:data={data.resources}
+				{filter}
+				hint="Pesquisar..."
+				expanded
+			/>
 		{/if}
 	</svelte:fragment>
 
 	<svelte:fragment slot="table-content">
-		{#each data as resource}
+		{#each resources as resource, id}
 			<tr>
-				<td>{resource.id}</td>
-				<td>{resource.resource}</td>
+				<td>{id + 1}</td>
+				<td>{resource.name}</td>
 			</tr>
 		{/each}
 	</svelte:fragment>

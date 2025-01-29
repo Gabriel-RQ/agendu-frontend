@@ -29,6 +29,10 @@ body {
 	width: 100vw;
 }
 
+main {
+	max-height: 100vh;
+}
+
 button {
 	cursor: pointer;
 }
