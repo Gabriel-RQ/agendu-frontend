@@ -13,7 +13,8 @@
 		faUsers,
 		faListCheck,
 		faSchool,
-		faFileContract
+		faFileContract,
+		faBook
 	} from '@fortawesome/free-solid-svg-icons';
 
 	let userName = 'Nome do Usuário';
@@ -26,12 +27,13 @@
 	const pageNames = {
 		home: { name: 'Página Inicial', icon: faHome },
 		timeline: { name: 'Cronograma', icon: faCalendar },
+		users: { name: 'Usuários', icon: faUsers },
+		contracts: { name: 'Contratos', icon: faFileContract },
 		roles: { name: 'Funções', icon: faListCheck },
 		public: { name: 'Planilhas Públicas', icon: faGlobe },
 		classes: { name: 'Turmas', icon: faBlackboard },
-		users: { name: 'Usuários', icon: faUsers },
 		resources: { name: 'Recursos', icon: faSchool },
-		contracts: { name: 'Contratos', icon: faFileContract }
+		activities: { name: 'Atividades', icon: faBook }
 	};
 
 	function openMenu() {
