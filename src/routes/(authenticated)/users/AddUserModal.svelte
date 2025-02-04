@@ -1,12 +1,14 @@
 <script>
-	import { faClose } from '@fortawesome/free-solid-svg-icons';
+	import { faClose}
+	from '@fortawesome/free-solid-svg-icons';
 	import { Modal } from '$lib/components/modal';
-	import { Button, IconButton, Input } from '$lib';
+	import { Button, IconButton, Input, Select} from '$lib';
 
 	/** @type {VoidFunction} */
 	export let onClose;
 	/** @type {boolean} */
 	export let expand = false;
+	
 </script>
 
 <Modal class="add-role-modal" open {expand}>
@@ -23,16 +25,27 @@
 	<section>
 		<form class="flex-column" action="">
 			<div class="flex-column input-wrapper">
-				<label class="font-medium text-1_15" for="description">Descrição</label>
+				<label class="font-medium text-1_15" for="description">Nome</label>
 				<Input
 					id="description"
 					name="description"
 					type="text"
-					placeholder="Informe a descrição do Usuário..."
+					placeholder="Informe o nome do usuário..."
 					expanded
 				/>
-			</div>
-
+				<label class="font-medium text-1_15" for="description">Cargo</label>
+				<Select
+					id="role"
+					name="role"
+					options={[
+						{ value: 'admin', label: 'Administrador' },
+						{ value: 'teacher', label: 'Professor' },
+						{ value: 'director', label: 'Diretor' }
+					]}
+					placeholder = "Selecione o cargo"
+					expanded
+					value=""
+				/>
 			<Button class="font-medium text-1_15" expanded type="submit">Salvar Cadastro</Button>
 		</form>
 	</section>

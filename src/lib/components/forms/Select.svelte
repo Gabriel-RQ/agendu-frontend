@@ -36,8 +36,8 @@
 		on:focus
 		on:keydown
 	>
-		{#if placeholder}
-			<option value="" disabled selected>{placeholder}</option>
+		{#if placeholder && !value}
+			<option value="" disabled selected={!value || value === ""}>{placeholder}</option>
 		{/if}
 		{#each options as { value: optionValue, label }}
 			<option value={optionValue}>{label}</option>
@@ -54,7 +54,7 @@
 		--color: 94, 94, 94;
 		position: relative;
 		color: var(--color);
-	}
+		}
 
 	select {
 		background: transparent;
