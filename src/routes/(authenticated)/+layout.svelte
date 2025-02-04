@@ -11,7 +11,7 @@
 <style>
 	:global(body) {
 		display: grid;
-		grid-template-rows: auto 1fr;
+		grid-template-rows: auto 1fr !important;
 	}
 
 	@media screen and (min-width: 992px) {

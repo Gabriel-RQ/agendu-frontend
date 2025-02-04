@@ -25,8 +25,11 @@
 		gap: 1rem;
 		padding: 20px;
 		text-align: center;
+		transition: background-color 0.3s ease-in-out;
 	}
-
+	.card:hover {
+		background-color: var(--primary-color-dark);
+	}
 	@media screen and (min-width: 992px) {
 		.card {
 			font-size: 18px;
