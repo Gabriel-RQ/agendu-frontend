@@ -14,7 +14,8 @@
 		faListCheck,
 		faSchool,
 		faFileContract,
-		faBook
+		faBook,
+		faSignOut
 	} from '@fortawesome/free-solid-svg-icons';
 
 	let userName = 'Nome do Usuário';
@@ -33,7 +34,8 @@
 		public: { name: 'Planilhas Públicas', icon: faGlobe },
 		classes: { name: 'Turmas', icon: faBlackboard },
 		resources: { name: 'Recursos', icon: faSchool },
-		activities: { name: 'Atividades', icon: faBook }
+		activities: { name: 'Atividades', icon: faBook },
+		leave: { name: 'Sair', icon: faSignOut }
 	};
 
 	function openMenu() {

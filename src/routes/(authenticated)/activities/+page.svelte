@@ -1,9 +1,10 @@
 <script>
-	import { faSearch, faPlus } from '@fortawesome/free-solid-svg-icons';
+	import { faSearch } from '@fortawesome/free-solid-svg-icons';
 	import { IconButton, SearchBar } from '$lib';
+	import { removeAccents } from '$lib/util';
 	import TablePage from '../TablePage.svelte';
 
-	const headers = ['Id', 'Atividade'];
+	const headers = ['ID', 'Atividade'];
 
 	let data = [
 		{ id: 1, activity: 'Aula' },
@@ -16,10 +17,15 @@
 
 	let showSearchBar = false;
 
-	const filter = (/** @type { {id: number; role: string}[]} */ data, /** @type {any}*/ value) =>
+	const filter = (/** @type { {id: number; activity: string}[]} */ data, /** @type {any}*/ value) =>
 		data.filter(
-			(d) => d.id === parseInt(value) || d.role.toLowerCase().includes(value.toLowerCase())
+			(d) =>
+				d.id === parseInt(value) ||
+				removeAccents(d.activity.toLowerCase()).includes(removeAccents(value.toLowerCase()))
 		);
+
+	const showModalAction = () => null;
+	// showModal({ component: AddRoleModal, props: { onClose: hideModal } });
 </script>
 
 <svelte:head>
@@ -29,20 +35,18 @@
 <TablePage {headers} title="Funções">
 	<span class="table-header-buttons" slot="header-content">
 		<IconButton
-			icon={faPlus}
-			iconData={{ color: 'var(--primary-color-light)', size: 'lg', scale: '1.5' }}
-		/>
-
-		<IconButton
+			class="hide-on-desktop"
 			icon={faSearch}
 			iconData={{ color: 'var(--primary-color-light)', size: 'lg', scale: '1.5' }}
 			on:click={() => (showSearchBar = !showSearchBar)}
 		/>
+
+		<SearchBar class="hidden" bind:data {filter} hint="Pesquisar..." expanded />
 	</span>
 
 	<svelte:fragment slot="header-searchbar">
 		{#if showSearchBar}
-			<SearchBar bind:data {filter} hint="Pesquisar..." expanded />
+			<SearchBar class="mobile-searchbar" bind:data {filter} hint="Pesquisar..." expanded />
 		{/if}
 	</svelte:fragment>
 
@@ -55,3 +59,33 @@
 		{/each}
 	</svelte:fragment>
 </TablePage>
+
+<style>
+	:global(.hide-on-mobile.new-btn) {
+		display: none;
+	}
+
+	@media screen and (min-width: 992px) {
+		/* Otimiza o layout para telas maiores - esconde ícones e barras de pesquisa do mobile */
+		.table-header-buttons :global(.icon-btn.hide-on-desktop) {
+			display: none;
+		}
+
+		.table-header-buttons :global(.searchbar) {
+			display: initial;
+		}
+
+		:global(.hide-on-mobile.new-btn) {
+			align-items: center;
+			display: flex;
+			padding: 0 0.75rem;
+			gap: 0.5rem;
+			justify-content: center;
+		}
+
+		:global(.mobile-searchbar),
+		:global(.mobile-searchbar ~ .icon) {
+			display: none;
+		}
+	}
+</style>
