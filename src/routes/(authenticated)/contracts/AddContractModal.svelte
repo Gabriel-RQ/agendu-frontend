@@ -41,16 +41,20 @@
 					class="select-field"
 					options={[
 						{ label: 'Alfabetização', value: 'alfabetizacao' },
-						{ label: 'Estimulção Precoce', value: 'estimulacao-precoce' }
+						{ label: 'Estimulação Precoce', value: 'estimulacao-precoce' }
 					]}
 				/>
 				<label class="font-medium text-1_15" for="active">Atividade</label>
-				<Input
-					id="resource-name"
-					name="resource-name"
-					type="text"
-					placeholder="Informe o nome da atividade..."
-					expanded
+				<Select
+					id="atividade"
+					name="atividade"
+					class="select-field"
+					options={[
+						{ label: 'Aula', value: 'aula' },
+						{ label: 'Informática', value: 'informatica' },
+						{ label: 'Ed. Física', value: 'ed-fisica' },
+						{ label: 'Música', value: 'musica' }
+					]}
 				/>
 				<label class="font-medium text-1_15" for="resources">Recurso</label>
 				<Select
@@ -59,11 +63,12 @@
 					class="select-field"
 					options={[
 						{ label: 'Ginásio', value: 'ginasio' },
-						{ label: 'Laboratório Informática', value: 'laboratorio-informatica' }
+						{ label: 'Laboratório Informática', value: 'laboratorio-informatica' },
+						{ label: 'Sala 1', value: 'sala-1' }
 					]}
 				/>
 				<label class="font-medium text-1_15" for="workload">CH</label>
-				<Input type="number" id="workload" name="workload" min={0} />
+				<Input type="number" id="workload" name="workload" min={0} max={200} />
 				<label class="font-medium text-1_15" for="preference">Preferência</label>
 				<Select
 					id="preference"
@@ -74,8 +79,17 @@
 						{ label: 'Geminar', value: 'geminar' }
 					]}
 				/>
-			</div>
+				<script>
+					// Função para alternar o estado da célula (X ou vazio)
+					let tableData = Array(8)
+						.fill()
+						.map(() => Array(5).fill(false));
 
+					function toggleCell(row, col) {
+						tableData[row][col] = !tableData[row][col]; // Alterna entre verdadeiro e falso
+					}
+				</script>
+			</div>
 			<Button class="font-medium text-1_15" expanded type="submit">Salvar</Button>
 		</form>
 	</section>
