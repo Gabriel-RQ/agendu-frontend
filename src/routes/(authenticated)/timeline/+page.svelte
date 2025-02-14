@@ -10,57 +10,36 @@
 		'16:00 - 17:00'
 	];
 
-	const periods = [
-		{
-			start: '08:00',
-			end: '09:00',
-			subject: 'Matemática',
-			teacher: 'João',
-			weekday: 'Segunda'
-		},
-		{
-			start: '09:00',
-			end: '10:00',
-			subject: 'Português',
-			teacher: 'Maria',
-			weekday: 'Segunda'
-		},
-		{
-			start: '10:00',
-			end: '11:00',
-			subject: 'História',
-			teacher: 'José',
-			weekday: 'Terça'
-		},
-		{
-			start: '11:00',
-			end: '12:00',
-			subject: 'Geografia',
-			teacher: 'Ana',
-			weekday: 'Quarta'
-		},
-		{
-			start: '14:00',
-			end: '15:00',
-			subject: 'Física',
-			teacher: 'Carlos',
-			weekday: 'Quinta'
-		},
-		{
-			start: '15:00',
-			end: '16:00',
-			subject: 'Química',
-			teacher: 'Marta',
-			weekday: 'Sexta'
-		},
-		{
-			start: '16:00',
-			end: '17:00',
-			subject: 'Biologia',
-			teacher: 'Pedro',
-			weekday: 'Sexta'
-		}
-	];
+	// Dados do backend (Exemplo)
+	/** @type {import('./$types').PageData} */
+	export let data;
+
+	// Converte os dados do backend para a estrutura de periods
+	/** @type {any} */
+	let periods = [];
+
+	// Percorre os dados recebidos e transforma em períodos
+	data.contracts.forEach((/** @type {any} */ entry) => {
+		const timelineArray = entry.timeline.trim().split(/\s+/);
+
+		// Itera sobre os dias da semana
+		weekDays.forEach((day, dayIndex) => {
+			const startIndex = dayIndex * 4; // Cada dia começa a cada 4 posições no timeline
+
+			// Itera sobre os horários do dia (4 períodos por dia)
+			for (let i = 0; i < 4; i++) {
+				if (timelineArray[startIndex + i] === '1') {
+					periods.push({
+						start: timeSlots[i].split(' - ')[0],
+						end: timeSlots[i].split(' - ')[1],
+						subject: entry.classes.name,
+						teacher: entry.teacher.name,
+						weekday: day
+					});
+				}
+			}
+		});
+	});
 </script>
 
 <svelte:head>
@@ -100,7 +79,7 @@
 									</td>
 								{/if}
 							{/each}
-							{#if !periods.some((p) => p.weekday === weekDay && p.start + ' - ' + p.end === timeSlot)}
+							{#if !periods.some((/** @type {any} */ p) => p.weekday === weekDay && p.start + ' - ' + p.end === timeSlot)}
 								<td></td>
 							{/if}
 						{/each}
