@@ -43,7 +43,7 @@
 	<title>Agendu | Usuários</title>
 </svelte:head>
 
-<TablePage {headers} title="Funções">
+<TablePage {headers} title="Usuários">
 	<span class="table-header-buttons" slot="header-content">
 		<IconButton
 			class="hide-on-desktop"
