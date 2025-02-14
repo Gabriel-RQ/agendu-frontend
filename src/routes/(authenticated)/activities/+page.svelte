@@ -32,7 +32,7 @@
 	<title>Agendu | Atividades</title>
 </svelte:head>
 
-<TablePage {headers} title="Funções">
+<TablePage {headers} title="Atividades">
 	<span class="table-header-buttons" slot="header-content">
 		<IconButton
 			class="hide-on-desktop"

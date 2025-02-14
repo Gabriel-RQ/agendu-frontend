@@ -12,6 +12,8 @@ class AgenduApi {
 		classes: {
 			post: () => `${this.#baseUrl}/class/create`,
 			get: () => `${this.#baseUrl}/class/listAll`
+		contracts: {
+			get: () => `${this.#baseUrl}/contract/listAll`
 		}
 	};
 
@@ -55,6 +57,8 @@ class AgenduApi {
 
 	getClasses() {
 		return fetch(this.#endpoints.classes.get(), {
+	getContracts() {
+		return fetch(this.#endpoints.contracts.get(), {
 			headers: {
 				authorization: this.#authToken
 			}
