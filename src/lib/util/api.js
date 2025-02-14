@@ -8,6 +8,10 @@ class AgenduApi {
 		resources: {
 			post: () => `${this.#baseUrl}/resource/create`,
 			get: () => `${this.#baseUrl}/resource/listAll`
+		},
+		classes: {
+			post: () => `${this.#baseUrl}/class/create`,
+			get: () => `${this.#baseUrl}/class/listAll`
 		}
 	};
 
@@ -32,6 +36,25 @@ class AgenduApi {
 
 	getResources() {
 		return fetch(this.#endpoints.resources.get(), {
+			headers: {
+				authorization: this.#authToken
+			}
+		});
+	}
+
+	postClass(/** @type {{ name: string }} */ classData) {
+		return fetch(this.#endpoints.classes.post(), {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				authorization: this.#authToken
+			},
+			body: JSON.stringify(classData)
+		});
+	}
+
+	getClasses() {
+		return fetch(this.#endpoints.classes.get(), {
 			headers: {
 				authorization: this.#authToken
 			}
