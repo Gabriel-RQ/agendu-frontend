@@ -23,7 +23,9 @@
 
 		<span class="full-width wrapper"><p class="font-medium text-1_25 text-black">ou</p></span>
 
-		<Button secondary expanded class="font-medium text-1_5">Pais e responsáveis</Button>
+		<Button href="/public" secondary expanded class="font-medium text-1_5"
+			>Pais e responsáveis</Button
+		>
 	</div>
 
 	<SocialMediaIcons hideOnDesktop />

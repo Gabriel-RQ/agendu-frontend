@@ -145,4 +145,10 @@
 		width: 100%;
 		grid-row: 0;
 	}
+
+	@media print {
+		table {
+			border-spacing: 0.25rem;
+		}
+	}
 </style>

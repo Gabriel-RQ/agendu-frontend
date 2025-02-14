@@ -1,5 +1,5 @@
 import { api } from '$lib/util';
-import { error, redirect } from '@sveltejs/kit';
+import { redirect } from '@sveltejs/kit';
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ locals, cookies }) {
@@ -13,7 +13,7 @@ export async function load({ locals, cookies }) {
 	const res = await api.getContracts();
 
 	if (!res.ok) {
-		throw error(500, 'Failed to fetch contracts');
+		return { contracts: [] };
 	}
 
 	const contracts = await res.json();
