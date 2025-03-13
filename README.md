@@ -1,6 +1,8 @@
 # Agendu (Frontend)
 
-Repositório para o frontend do sistema agendu.
+Repositório para o frontend do sistema agendu. O Agendu é um sistema de gerenciamento de horários formulado para a APAE, como parte da Prática Profissional Integrada (PPI) do curso de Ciência da Computação. O objetivo do projeto é que o sistema utilize uma abordagem de Algoritmo Genético para gerar os horários das aulas da APAE, baseando-se em um conjunto de restrições.
+
+Para funcionar, é necessário executar o [backend do projeto](https://github.com/Alisson-sysy/agendu-back-end).
 
 ## Informações
 
